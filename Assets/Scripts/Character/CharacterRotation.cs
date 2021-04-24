@@ -16,7 +16,7 @@ public class CharacterRotation : MonoBehaviour
         var mousePos = Input.mousePosition;
         Vector2 mouseWorldPos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -cam.transform.position.z));
         var forward = mouseWorldPos - (Vector2)transform.position;
-        forward.Normalize();
+        Vector2 target = forward.normalized;
         transform.up = forward;
     }
 }
