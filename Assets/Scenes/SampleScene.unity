@@ -247,9 +247,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomWorldSizeX: 5
   _roomWorldSizeY: 8
-  _startRoom: {fileID: 2223874249538563993, guid: bd1fa611306964476a4105ed19f0c488, type: 3}
+  _startRoom: {fileID: -5403356972289603466, guid: 3a28e76f498fcb242bd8c1c17c20f653, type: 3}
   _roomPrefabs:
-  - {fileID: 2223874249538563993, guid: bd1fa611306964476a4105ed19f0c488, type: 3}
+  - {fileID: -5403356972289603466, guid: 3a28e76f498fcb242bd8c1c17c20f653, type: 3}
   _startingWidth: 5
   _startingHeight: 5
 --- !u!1 &705507993
