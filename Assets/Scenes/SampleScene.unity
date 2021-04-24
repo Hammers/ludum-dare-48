@@ -249,7 +249,10 @@ MonoBehaviour:
   _roomWorldSizeY: 10
   _startRoom: {fileID: 2822383239949705675, guid: 1ddd425df45b941f7af7e878d7fec685, type: 3}
   _roomPrefabs:
-  - {fileID: 2822383239949705675, guid: 1ddd425df45b941f7af7e878d7fec685, type: 3}
+  - {fileID: 2822383239949705675, guid: 5d0884ac566d04e8d8639926b409f7a0, type: 3}
+  - {fileID: 2822383239949705675, guid: f6b156043b13f46b6904ca1bc3bfa1ed, type: 3}
+  - {fileID: 2822383239949705675, guid: 605334edb93a642d5b9f6b6868713f6e, type: 3}
+  - {fileID: 2822383239949705675, guid: 17a527ddc72454d3a8d467b44ff2b2aa, type: 3}
   _startingWidth: 5
   _startingHeight: 5
 --- !u!1 &705507993
