@@ -44,6 +44,9 @@ TextureImporter:
   - first:
       213: 9045646400296435942
     second: Tiles_13
+  - first:
+      213: -6765242926017629268
+    second: Tiles_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -220,8 +223,8 @@ TextureImporter:
       name: Tiles_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 64
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -241,7 +244,7 @@ TextureImporter:
       name: Tiles_5
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 96
         width: 16
         height: 16
@@ -262,7 +265,7 @@ TextureImporter:
       name: Tiles_6
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 96
         width: 16
         height: 16
@@ -283,7 +286,7 @@ TextureImporter:
       name: Tiles_7
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 96
         width: 16
         height: 16
@@ -304,7 +307,7 @@ TextureImporter:
       name: Tiles_8
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 96
         width: 16
         height: 16
@@ -325,8 +328,8 @@ TextureImporter:
       name: Tiles_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 64
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -346,7 +349,7 @@ TextureImporter:
       name: Tiles_10
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 80
         width: 16
         height: 16
@@ -367,7 +370,7 @@ TextureImporter:
       name: Tiles_11
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 80
         width: 16
         height: 16
@@ -388,7 +391,7 @@ TextureImporter:
       name: Tiles_12
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 80
         width: 16
         height: 16
@@ -409,7 +412,7 @@ TextureImporter:
       name: Tiles_13
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 80
         width: 16
         height: 16
@@ -422,6 +425,27 @@ TextureImporter:
       bones: []
       spriteID: 6e0c575a977988d70800000000000000
       internalID: 9045646400296435942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tiles_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca3be7f07670d12a0800000000000000
+      internalID: -6765242926017629268
       vertices: []
       indices: 
       edges: []
