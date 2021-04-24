@@ -1813,6 +1813,7 @@ MonoBehaviour:
   - {fileID: 935049486871834674}
   - {fileID: 5160566931822762467}
   rotationSpeed: 2.5
+  huntSpeed: 200
   movementSpeed: 250
 --- !u!1 &7337959017783987452
 GameObject:

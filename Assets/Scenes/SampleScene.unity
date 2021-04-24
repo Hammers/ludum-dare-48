@@ -634,5 +634,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 4560677029702058797, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}

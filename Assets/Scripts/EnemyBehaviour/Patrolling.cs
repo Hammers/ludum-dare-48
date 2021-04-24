@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Patrolling : MonoBehaviour
@@ -7,7 +5,8 @@ public class Patrolling : MonoBehaviour
     enum PatrolState{
         None,
         Turning,
-        Moving
+        Moving,
+        Hunting
     }
     // Start is called before the first frame update
     [SerializeField] private PatrolPoint[] patrolPoints;
@@ -18,9 +17,12 @@ public class Patrolling : MonoBehaviour
 
     // Turning
     [SerializeField] private float rotationSpeed = 2.5f;
+    [SerializeField] private float huntSpeed = 5f;
+    [SerializeField] private float searchSpeedModifier = 1.5f;
     private Vector3 startRot;
     private Vector3 targetRot;
     private float rotProgress;
+    private Transform huntTarget;
 
     // Moving
     [SerializeField] private float movementSpeed = 100f;
@@ -48,7 +50,11 @@ public class Patrolling : MonoBehaviour
 
     private void TurnToTarget()
     {
-        rotProgress += Time.deltaTime * rotationSpeed;
+        var progressStep = Time.deltaTime * rotationSpeed;
+        if(GetComponent<Vision>().state == Vision.VisionState.Searching)
+            progressStep *= searchSpeedModifier;
+
+        rotProgress += progressStep;
         if(rotProgress >= 1f){
             if (targetPatrolPoint.pointType == PatrolPoint.PointType.Move){
                 Debug.Log("Now moving to target...");
@@ -62,13 +68,25 @@ public class Patrolling : MonoBehaviour
         else
             transform.up = Vector3.Slerp(startRot, targetRot, rotProgress);
     }
+    private void TurnToHuntTarget()
+    {
+        Quaternion targetRot = Quaternion.LookRotation(transform.up, huntTarget.position - transform.position);
+        Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRot, huntSpeed * Time.deltaTime);
+        if(Quaternion.Angle(transform.rotation, targetRot) <= 1f)
+            rotation = targetRot;
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, rotation.eulerAngles.z));
+    }
 
     private void MoveToTarget()
     {
         if(Vector3.Distance(transform.position, targetPatrolPoint.transform.position) > 0.01f){
             var forces = targetPatrolPoint.transform.position - transform.position;
             forces.Normalize();
-            forces *= Time.deltaTime * movementSpeed;
+            var forceStrength = Time.deltaTime * movementSpeed;
+            if(GetComponent<Vision>().state == Vision.VisionState.Searching)
+                forceStrength *= searchSpeedModifier;
+
+            forces *= forceStrength;
             rb.AddForce(forces);
         }
         else
@@ -87,6 +105,24 @@ public class Patrolling : MonoBehaviour
             case PatrolState.Moving:
                 MoveToTarget();
                 break;
+            case PatrolState.Hunting:
+                TurnToHuntTarget();
+                break;
         }
+    }
+
+    public void Hunt(Transform target)
+    {
+        Debug.Log("Hunting...");
+        state = PatrolState.Hunting;
+        huntTarget = target;
+    }
+
+    public void StopHunting()
+    {
+        Debug.Log("Stop Hunting...");
+        if(state == PatrolState.Hunting)
+            state = PatrolState.None;
+        huntTarget = null;
     }
 }
