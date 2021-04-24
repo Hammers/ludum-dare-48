@@ -63,7 +63,7 @@ public class Vision : MonoBehaviour
                 }
                 break;
             case VisionState.Alert:
-                Debug.Log("You dead, bro");
+                GameObject.Find("PlayerCharacter").GetComponent<CharacterDeath>().Trigger();
                 break;
         }
         return state;
