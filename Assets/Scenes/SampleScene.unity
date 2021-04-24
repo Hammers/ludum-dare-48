@@ -254,6 +254,7 @@ MonoBehaviour:
   - {fileID: 2822383239949705675, guid: 605334edb93a642d5b9f6b6868713f6e, type: 3}
   - {fileID: 2822383239949705675, guid: 17a527ddc72454d3a8d467b44ff2b2aa, type: 3}
   - {fileID: 2822383239949705675, guid: 4d3304a93649f364580579f52ca3d71a, type: 3}
+  - {fileID: 2822383239949705675, guid: 245367d6e0c010f448558736861508bc, type: 3}
   _startingWidth: 5
   _startingHeight: 5
 --- !u!1 &705507993
