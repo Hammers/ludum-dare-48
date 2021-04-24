@@ -1,66 +1,105 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class VisionCone : MonoBehaviour
 {
-    [SerializeField] private float angle = 45f;
-    private float halfAngle;
-    private Transform target;
-    [SerializeField] private Image cone;
-    private Camera cam;
+    [SerializeField] private Material normalMat;
+    [SerializeField] private Material seenMat;
+    [SerializeField] private Material searchingMat;
+    [SerializeField] private Material alertMat;
+    public Vision vision;
+    private Mesh coneMesh;
+    private MeshRenderer mRenderer;
 
-    private Color defaultColour = new Color(0.2429245f, 0.5f, 0.2667981f, 0.5f);
-    private Color alertedColour = new Color(1, 0, 0, 1);
+    private const int RAY_COUNT = 20;
+    private float totalAngle;
+    private float angleStep;
+    
+    private float distance;
+    private Vision.VisionState lastState = Vision.VisionState.Normal;
 
-    // Start is called before the first frame update
     void Start()
     {
-        halfAngle = angle * 0.5f;
-        target = GameObject.Find("PlayerCharacter").transform;
-        cam = Camera.main;
+        coneMesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = coneMesh;
+        mRenderer = GetComponent<MeshRenderer>();
+        mRenderer.sortingLayerID = vision.GetComponent<SpriteRenderer>().sortingLayerID;
+        mRenderer.sortingLayerName = vision.GetComponent<SpriteRenderer>().sortingLayerName;
+        mRenderer.material = normalMat;
+        mRenderer.sortingOrder = -1;
+        totalAngle = vision.angle;
+        
+        angleStep = totalAngle / RAY_COUNT;
 
-        float angleRatio = angle / 360f;
-        cone.fillAmount = angleRatio;
-        cone.rectTransform.Rotate(new Vector3(0, 0, halfAngle));
-        cone.color = defaultColour;
+        distance = vision.distance;
     }
 
-    private void ResolveSeenState(bool playerIsSeen){
-        if(playerIsSeen){
-            cone.color = alertedColour;
-        }
-        else cone.color = defaultColour;
+    Vector3 GetVectorFromAngle(float angle){
+        float angleRad = angle * (Mathf.PI/180f);
+        return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+    }
+
+    float GetAngleFromVectorFloat(Vector2 dir){
+        Vector3 dirNorm = dir.normalized;
+        float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (n < 0) n += 360f;
+        return n;
     }
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        Vector2 pos = new Vector2(transform.position.x, transform.position.y);
-        Vector2 targetPos = new Vector2(target.position.x, target.position.y);
+        var origin = vision.transform.position;
+        float angle = GetAngleFromVectorFloat(vision.transform.up)+(totalAngle/2);
 
-        var currAngle = Vector2.Angle(transform.up.normalized, (targetPos - pos).normalized);
+        Vector3[] vertices = new Vector3[RAY_COUNT + 2];
+        Vector2[] uvs = new Vector2[vertices.Length];
+        int[] triangles = new int[RAY_COUNT * 3];
 
-        if(currAngle <= halfAngle){
-            Debug.Log("Found player..");
-            // Check for any blocking objects between this and the target
-            RaycastHit2D hit = Physics2D.Raycast(pos, targetPos - pos);
-            if(hit.collider == null){
-                //Debug.Log("Nothing between Player...");
-                ResolveSeenState(true);
-            }
-            else if(hit.collider.tag == "Player"){
-                //Debug.Log("Found Player...");
-                ResolveSeenState(true);
+        vertices[0] = origin;
+
+        int vertexIndex = 1;
+        int triangleIndex = 0;
+        for(int i = 0; i <= RAY_COUNT; i++){
+            Vector3 vertext;
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(vision.transform.position, GetVectorFromAngle(angle), distance);
+            if (raycastHit2D.collider == null){
+                vertext = origin + GetVectorFromAngle(angle) * distance;
             }
             else{
-                //Debug.Log($"Blocked sight by {hit.collider.name}...");
-                ResolveSeenState(false);
+                //Debug.Log("Colliding with "+raycastHit2D.collider.name+" setting point to "+raycastHit2D.point);
+                vertext = raycastHit2D.point;
             }
+            vertices[vertexIndex] = vertext;
+
+            if(i > 0){
+                triangles[triangleIndex] = 0;
+                triangles[triangleIndex + 1] = vertexIndex - 1;
+                triangles[triangleIndex + 2] = vertexIndex;
+                triangleIndex += 3;
+            }
+            vertexIndex++;
+            angle -= angleStep;
         }
-        else {
-            //Debug.Log("Not the right angle..");
-            ResolveSeenState(false);
+
+        coneMesh.vertices = vertices;
+        coneMesh.uv = uvs;
+        coneMesh.triangles = triangles;
+        
+        if(lastState != vision.state){
+            switch(vision.state){
+                case Vision.VisionState.Normal:
+                    mRenderer.material = normalMat;
+                    break;
+                case Vision.VisionState.Seen:
+                    mRenderer.material = seenMat;
+                    break;
+                case Vision.VisionState.Searching:
+                    mRenderer.material = searchingMat;
+                    break;
+                case Vision.VisionState.Alert:
+                    mRenderer.material = alertMat;
+                    break;
+            }
+            lastState = vision.state;
         }
     }
 }
