@@ -8,7 +8,6 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite _activeSprite;
-    [SerializeField] private Sprite _interactableSprite;
     [SerializeField] private Sprite _inActiveSprite;
     [SerializeField] private float interactionTime;
     [SerializeField] private Transform interactionPoint;
@@ -30,6 +29,7 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
 
     public IEnumerator InteractCo()
     {
+        _spriteRenderer.color = Color.white;
         _interactionBar.gameObject.SetActive(true);
         _interactionBar._fillImage.fillAmount = 0;
         _interactionBar._fillImage.DOFillAmount(1f,interactionTime).SetEase(Ease.Linear);
@@ -51,7 +51,7 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         if(character != null)
         {
             _characterInRange = character;
-            _spriteRenderer.sprite = _interactableSprite;
+            _spriteRenderer.color = Color.green;
         }
     }
 
@@ -65,7 +65,7 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         if(character != null)
         {
             _characterInRange = null;
-            _spriteRenderer.sprite = _activeSprite;
+            _spriteRenderer.color = Color.white;
         }
     }
     
