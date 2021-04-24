@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Direction
+{
+    Up,
+    Down,
+    Left,
+    Right,
+}
+
 public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance => _instance;
@@ -12,8 +20,6 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] float _roomWorldSizeY = 1;
     [SerializeField] private Room _startRoom;
     [SerializeField] private List<Room> _roomPrefabs;
-    [SerializeField] private int _startingWidth;
-    [SerializeField] private int _startingHeight;
     private Dictionary<Vector2Int, Room> _rooms = new Dictionary<Vector2Int, Room>();
 
     void Awake()

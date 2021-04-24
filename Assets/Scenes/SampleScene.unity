@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -247,11 +247,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomWorldSizeX: 10
   _roomWorldSizeY: 10
-  _startRoom: {fileID: 2822383239949705675, guid: 1ddd425df45b941f7af7e878d7fec685, type: 3}
+  _startRoom: {fileID: 2822383239949705675, guid: 245367d6e0c010f448558736861508bc, type: 3}
   _roomPrefabs:
+  - {fileID: 2822383239949705675, guid: 245367d6e0c010f448558736861508bc, type: 3}
   - {fileID: 2822383239949705675, guid: 5d0884ac566d04e8d8639926b409f7a0, type: 3}
-  _startingWidth: 5
-  _startingHeight: 5
+  - {fileID: 2822383239949705675, guid: 4d3304a93649f364580579f52ca3d71a, type: 3}
+  - {fileID: 2822383239949705675, guid: f6b156043b13f46b6904ca1bc3bfa1ed, type: 3}
+  - {fileID: 2822383239949705675, guid: 605334edb93a642d5b9f6b6868713f6e, type: 3}
+  - {fileID: 2822383239949705675, guid: 17a527ddc72454d3a8d467b44ff2b2aa, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

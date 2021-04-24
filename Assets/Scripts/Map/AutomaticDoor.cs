@@ -3,37 +3,56 @@
 
     public class AutomaticDoor : MonoBehaviour
     {
-        [SerializeField] private Vector2Int direction;
+        [SerializeField] private Direction _direction;
+        [SerializeField] private Animator _animator;
+        
+        private bool _opened;
 
-        private bool _spawned;
-
-        private void Start()
+        public void OpenDoor()
         {
-            if (MapGenerator.Instance.GetRoomAtCellPos(
-                MapGenerator.Instance.GetCellPosFromWorldPos(transform.position) + direction) != null)
+            if (_opened)
             {
-                _spawned = true;
+                return;
             }
+
+            if (_animator)
+            {
+                _animator.SetBool("open", true);
+            }
+            Vector2Int dir = Vector2Int.zero;
+            switch (_direction)
+            {
+                case Direction.Up:
+                    dir = Vector2Int.up;
+                    break;
+                case Direction.Down:
+                    dir = Vector2Int.down;
+                    break;
+                case Direction.Left:
+                    dir = Vector2Int.left;
+                    break;
+                case Direction.Right:
+                    dir = Vector2Int.right;
+                    break;
+            }
+            _opened = true;
+            if (MapGenerator.Instance.GetRoomAtCellPos(
+                MapGenerator.Instance.GetCellPosFromWorldPos(transform.position) + dir) != null)
+            {
+                return;
+            }
+            
+            MapGenerator.Instance.AddRandomRoom(MapGenerator.Instance.GetCellPosFromWorldPos(transform.position),dir);
         }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_spawned)
-            {
-                return;
-            }
-            if (MapGenerator.Instance.GetRoomAtCellPos(
-                MapGenerator.Instance.GetCellPosFromWorldPos(transform.position) + direction) != null)
-            {
-                _spawned = true;
-                return;
-            }
             var player = other.GetComponent<CharacterMovement>();
             if (player)
             {
                 Debug.Log("Player entered door");
-                MapGenerator.Instance.AddRandomRoom(MapGenerator.Instance.GetCellPosFromWorldPos(transform.position),direction);
-                _spawned = true;
+                OpenDoor();
             }
+            
         }
     }
