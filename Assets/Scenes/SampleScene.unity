@@ -245,11 +245,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b8f78f7d7eb4c168d84e4bae79f09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomWorldSizeX: 5
-  _roomWorldSizeY: 8
-  _startRoom: {fileID: -5403356972289603466, guid: 3a28e76f498fcb242bd8c1c17c20f653, type: 3}
+  _roomWorldSizeX: 10
+  _roomWorldSizeY: 10
+  _startRoom: {fileID: 2822383239949705675, guid: 1ddd425df45b941f7af7e878d7fec685, type: 3}
   _roomPrefabs:
-  - {fileID: -5403356972289603466, guid: 3a28e76f498fcb242bd8c1c17c20f653, type: 3}
+  - {fileID: 2822383239949705675, guid: 1ddd425df45b941f7af7e878d7fec685, type: 3}
   _startingWidth: 5
   _startingHeight: 5
 --- !u!1 &705507993
@@ -597,6 +597,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1094749025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5005462476309951603, guid: 8e9e19b99caab324cbc5c5f8cfbedc76, type: 3}
+  m_PrefabInstance: {fileID: 1050906072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1094749030
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094749025}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &1094749031
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094749025}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1314004055
 GameObject:
   m_ObjectHideFlags: 0
