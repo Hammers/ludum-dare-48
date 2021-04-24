@@ -45,8 +45,10 @@ public class Vision : MonoBehaviour
             case VisionState.Seen:
                 if(playerIsSeen){
                     alertTime += Time.deltaTime;
-                    if(alertTime >= ALERT_TIME)
+                    if(alertTime >= ALERT_TIME){
+                        GameObject.Find("PlayerCharacter").GetComponent<CharacterDeath>().Trigger();
                         state = VisionState.Alert;
+                    }
                 }
                 else
                     state = VisionState.Searching;
@@ -63,7 +65,6 @@ public class Vision : MonoBehaviour
                 }
                 break;
             case VisionState.Alert:
-                GameObject.Find("PlayerCharacter").GetComponent<CharacterDeath>().Trigger();
                 break;
         }
         return state;

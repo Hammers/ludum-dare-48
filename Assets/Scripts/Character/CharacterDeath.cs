@@ -12,7 +12,7 @@ public class CharacterDeath : MonoBehaviour
 
     void Start()
     {
-        mainCanvas = GameObject.FindObjectOfType<Canvas>().transform;
+        mainCanvas = GameObject.Find("HUD").transform;
     }
     public void Trigger()
     {
