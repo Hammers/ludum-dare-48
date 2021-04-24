@@ -10,26 +10,26 @@ public class Patrolling : MonoBehaviour
         Moving
     }
     // Start is called before the first frame update
-    [SerializeField] private Transform[] patrolPoints;
+    [SerializeField] private PatrolPoint[] patrolPoints;
     private PatrolState state = PatrolState.None;
     private int targetPatrolPointIndex = 0;
-    private Transform targetPatrolPoint;
+    private PatrolPoint targetPatrolPoint;
     private Rigidbody2D rb;
 
     // Turning
-    private const float ROTATION_SPEED = 2.5f;
+    [SerializeField] private float rotationSpeed = 2.5f;
     private Vector3 startRot;
     private Vector3 targetRot;
     private float rotProgress;
 
     // Moving
-    private const float MOVEMENT_SPEED = 100f;
+    [SerializeField] private float movementSpeed = 100f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         targetPatrolPoint = patrolPoints[targetPatrolPointIndex];
-        state = PatrolState.Moving;
+        state = PatrolState.Turning;
     }
 
     private void GetNextTarget()
@@ -42,17 +42,22 @@ public class Patrolling : MonoBehaviour
         Debug.Log("Now turning to next target...");
         state = PatrolState.Turning;
         startRot = transform.up;
-        targetRot = (targetPatrolPoint.position - transform.position).normalized;
+        targetRot = (targetPatrolPoint.transform.position - transform.position).normalized;
         rotProgress = 0f;
     }
 
     private void TurnToTarget()
     {
-        rotProgress += Time.deltaTime * ROTATION_SPEED;
+        rotProgress += Time.deltaTime * rotationSpeed;
         if(rotProgress >= 1f){
-            transform.up = targetRot;
-            state = PatrolState.Moving;
-            Debug.Log("Now moving to target...");
+            if (targetPatrolPoint.pointType == PatrolPoint.PointType.Move){
+                Debug.Log("Now moving to target...");
+                transform.up = targetRot;
+                state = PatrolState.Moving;
+            }
+            else{
+                state = PatrolState.None;
+            }
         }
         else
             transform.up = Vector3.Slerp(startRot, targetRot, rotProgress);
@@ -60,10 +65,10 @@ public class Patrolling : MonoBehaviour
 
     private void MoveToTarget()
     {
-        if(Vector3.Distance(transform.position, targetPatrolPoint.position) > 0.01f){
-            var forces = targetPatrolPoint.position - transform.position;
+        if(Vector3.Distance(transform.position, targetPatrolPoint.transform.position) > 0.01f){
+            var forces = targetPatrolPoint.transform.position - transform.position;
             forces.Normalize();
-            forces *= Time.deltaTime * MOVEMENT_SPEED;
+            forces *= Time.deltaTime * movementSpeed;
             rb.AddForce(forces);
         }
         else

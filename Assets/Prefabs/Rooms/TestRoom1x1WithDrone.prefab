@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8443735497798936271}
+  - component: {fileID: 5448662368713718514}
   m_Layer: 0
   m_Name: PatrolPoint (1)
   m_TagString: Untagged
@@ -30,6 +31,19 @@ Transform:
   m_Father: {fileID: 7805951899483978081}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5448662368713718514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290805019157773560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e2c329f8c77ab4e848c89063cce096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointType: 1
 --- !u!1 &405945095137824068
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1808370212307294757}
+  - component: {fileID: 5160566931822762467}
   m_Layer: 0
   m_Name: PatrolPoint (2)
   m_TagString: Untagged
@@ -131,6 +146,19 @@ Transform:
   m_Father: {fileID: 7805951899483978081}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5160566931822762467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591728593034555609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e2c329f8c77ab4e848c89063cce096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointType: 1
 --- !u!1 &1455704715782201208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,6 +1902,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1474577784266987639}
+  - component: {fileID: 935049486871834674}
   m_Layer: 0
   m_Name: PatrolPoint (3)
   m_TagString: Untagged
@@ -1895,6 +1924,19 @@ Transform:
   m_Father: {fileID: 7805951899483978081}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &935049486871834674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5117925263565043496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e2c329f8c77ab4e848c89063cce096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointType: 1
 --- !u!1 &6471630327284298924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,10 +2021,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPoints:
-  - {fileID: 6908232934106341753}
-  - {fileID: 8443735497798936271}
-  - {fileID: 1474577784266987639}
-  - {fileID: 1808370212307294757}
+  - {fileID: 8188712554037078682}
+  - {fileID: 5448662368713718514}
+  - {fileID: 935049486871834674}
+  - {fileID: 5160566931822762467}
+  rotationSpeed: 2.5
+  movementSpeed: 250
 --- !u!1 &7337959017783987452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,6 +2036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6908232934106341753}
+  - component: {fileID: 8188712554037078682}
   m_Layer: 0
   m_Name: PatrolPoint
   m_TagString: Untagged
@@ -2013,6 +2058,19 @@ Transform:
   m_Father: {fileID: 7805951899483978081}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8188712554037078682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337959017783987452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e2c329f8c77ab4e848c89063cce096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointType: 1
 --- !u!1 &8361161271452162410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,7 +2082,7 @@ GameObject:
   - component: {fileID: 4728750768420022338}
   - component: {fileID: 2822383239949705675}
   m_Layer: 0
-  m_Name: TestRoom1x1WithCamera
+  m_Name: TestRoom1x1WithDrone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2344,13 +2402,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48d5f4739f1073e45afceedb57d8617d, type: 3}
---- !u!1 &6903907870775838678 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 417214442173066564, guid: 48d5f4739f1073e45afceedb57d8617d, type: 3}
-  m_PrefabInstance: {fileID: 6486773298632682130}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6903907870775838679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 417214442173066565, guid: 48d5f4739f1073e45afceedb57d8617d, type: 3}
+  m_PrefabInstance: {fileID: 6486773298632682130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6903907870775838678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 417214442173066564, guid: 48d5f4739f1073e45afceedb57d8617d, type: 3}
   m_PrefabInstance: {fileID: 6486773298632682130}
   m_PrefabAsset: {fileID: 0}
