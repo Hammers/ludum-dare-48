@@ -363,6 +363,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279875199}
   m_CullTransparentMesh: 1
+--- !u!114 &454019212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 817904047184639783, guid: 527edbb26d0491d4a8892e672ff8a4d6, type: 3}
+  m_PrefabInstance: {fileID: 508837073}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &508837073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -815,6 +826,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 817904047184639782, guid: 527edbb26d0491d4a8892e672ff8a4d6, type: 3}
   m_PrefabInstance: {fileID: 1337436142}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1476577152 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 817904047184639783, guid: 527edbb26d0491d4a8892e672ff8a4d6, type: 3}
+  m_PrefabInstance: {fileID: 70323834}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1659750349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 817904047184639783, guid: 527edbb26d0491d4a8892e672ff8a4d6, type: 3}
+  m_PrefabInstance: {fileID: 1337436142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1679005334
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,9 +900,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a19b1f36b537ed84e9425455c652eceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton: {fileID: 0}
-  shopButton: {fileID: 0}
-  exitButton: {fileID: 0}
+  playButton: {fileID: 454019212}
+  shopButton: {fileID: 1476577152}
+  exitButton: {fileID: 1659750349}
 --- !u!114 &1679005337
 MonoBehaviour:
   m_ObjectHideFlags: 0
