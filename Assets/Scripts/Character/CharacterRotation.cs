@@ -14,7 +14,7 @@ public class CharacterRotation : MonoBehaviour
     void Update()
     {
         var mousePos = Input.mousePosition;
-        Vector2 mouseWorldPos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -cam.transform.position.y));
+        Vector2 mouseWorldPos = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -cam.transform.position.z));
         var forward = mouseWorldPos - (Vector2)transform.position;
         forward.Normalize();
         transform.up = forward;
