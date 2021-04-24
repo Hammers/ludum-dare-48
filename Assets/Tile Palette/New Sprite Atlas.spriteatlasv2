@@ -31,16 +31,7 @@ SpriteAtlasAsset:
       enableTightPacking: 1
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: 7223950226953391895, guid: 8e7b030872799fb4788cf2b1a793a3da, type: 3}
-    - {fileID: -8377130690987618698, guid: 8e7b030872799fb4788cf2b1a793a3da, type: 3}
-    - {fileID: -4684333735789482159, guid: 8e7b030872799fb4788cf2b1a793a3da, type: 3}
-    - {fileID: -5062486230716756072, guid: 8e7b030872799fb4788cf2b1a793a3da, type: 3}
-    - {fileID: 4099902767569298868, guid: 8e7b030872799fb4788cf2b1a793a3da, type: 3}
-    - {fileID: -6833445872158455971, guid: 8e7b030872799fb4788cf2b1a793a3da, type: 3}
-    - {fileID: -537749870668139058, guid: 8e7b030872799fb4788cf2b1a793a3da, type: 3}
-    - {fileID: 1561205615984820651, guid: 8e7b030872799fb4788cf2b1a793a3da, type: 3}
-    - {fileID: 857779327251732012, guid: 8e7b030872799fb4788cf2b1a793a3da, type: 3}
+    packables: []
     totalSpriteSurfaceArea: 0
     bindAsDefault: 1
     isAtlasV2: 1
