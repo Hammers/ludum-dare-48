@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4620395387506262133}
   - component: {fileID: 889049836691419432}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DoorRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1772732816951416116}
   - component: {fileID: 3148913867186027044}
   - component: {fileID: 7465039280210903536}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AutomaticDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9144556227489945220}
   - component: {fileID: 1923913277450381288}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DoorLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

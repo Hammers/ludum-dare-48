@@ -27,16 +27,40 @@ public class VisionCone : MonoBehaviour
         cone.color = defaultColour;
     }
 
+    private void ResolveSeenState(bool playerIsSeen){
+        if(playerIsSeen){
+            cone.color = alertedColour;
+        }
+        else cone.color = defaultColour;
+    }
     // Update is called once per frame
     void Update()
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
         Vector2 targetPos = new Vector2(target.position.x, target.position.y);
-        
+
         var currAngle = Vector2.Angle(transform.up.normalized, (targetPos - pos).normalized);
+
         if(currAngle <= halfAngle){
-            cone.color = alertedColour;
+            Debug.Log("Found player..");
+            // Check for any blocking objects between this and the target
+            RaycastHit2D hit = Physics2D.Raycast(pos, targetPos - pos);
+            if(hit.collider == null){
+                //Debug.Log("Nothing between Player...");
+                ResolveSeenState(true);
+            }
+            else if(hit.collider.tag == "Player"){
+                //Debug.Log("Found Player...");
+                ResolveSeenState(true);
+            }
+            else{
+                //Debug.Log($"Blocked sight by {hit.collider.name}...");
+                ResolveSeenState(false);
+            }
         }
-        else cone.color = defaultColour;
+        else {
+            //Debug.Log("Not the right angle..");
+            ResolveSeenState(false);
+        }
     }
 }
