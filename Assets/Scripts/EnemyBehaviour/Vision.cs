@@ -17,7 +17,7 @@ public class Vision : MonoBehaviour
     private Camera cam;
 
     private const float SEARCH_TIME = 10f;
-    private const float ALERT_TIME = 5f;
+    private const float ALERT_TIME = 2f;
     private float searchingTime = 0f;
     private float alertTime = 0f;
 
