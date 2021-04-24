@@ -149,11 +149,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 2668903831338964931}
   _activeSprite: {fileID: 4454375367103297502, guid: b9e67e6489dc9054bb43f00f65a4b66b, type: 3}
-  _interactableSprite: {fileID: 4454375367103297502, guid: b9e67e6489dc9054bb43f00f65a4b66b, type: 3}
   _inActiveSprite: {fileID: -2016170256673693227, guid: b9e67e6489dc9054bb43f00f65a4b66b, type: 3}
   interactionTime: 3
   interactionPoint: {fileID: 2668903831248966187}
   _interactionBar: {fileID: 5496718075656200524}
+  _coins: 10
 --- !u!61 &2668903829885046146
 BoxCollider2D:
   m_ObjectHideFlags: 0

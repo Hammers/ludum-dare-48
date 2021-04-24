@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 public class Terminal : MonoBehaviour, IPointerClickHandler
 {
@@ -13,6 +14,7 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Transform interactionPoint;
 
     [SerializeField] private InteractionBar _interactionBar;
+    [SerializeField] private int _coins;
     
     private Character _characterInRange;
     private bool _used;
@@ -34,8 +36,8 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         _interactionBar._fillImage.fillAmount = 0;
         _interactionBar._fillImage.DOFillAmount(1f,interactionTime).SetEase(Ease.Linear);
         yield return new WaitForSeconds(interactionTime);
+        _characterInRange.GetComponent<CharacterInventory>().AddCoins(Random.Range(_coins - 3,_coins + 3)); 
         _interactionBar.gameObject.SetActive(false);
-        _used = true;
         _spriteRenderer.sprite = _inActiveSprite;
         _characterInRange.RegainControl();
     }
@@ -78,6 +80,7 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
 
         if (_characterInRange != null)
         {
+            _used = true;
             _characterInRange.ForceToPosition(interactionPoint.position,Vector2.Angle(interactionPoint.position,transform.position) + 90,Interact);
         }
     }
