@@ -11,7 +11,7 @@ public class Vision : MonoBehaviour
 
     [SerializeField] private GameObject visionConePrefab;
     public float angle = 45f;
-    public float distance = 20f;
+    public float distance = 1f;
     private float halfAngle;
     private Transform target;
     private Camera cam;
@@ -35,7 +35,8 @@ public class Vision : MonoBehaviour
         cone.GetComponent<VisionCone>().vision = this;
     }
 
-    private void ResolveSeenState(bool playerIsSeen){
+    public VisionState ResolveSeenState(bool playerIsSeen, float deltaTime)
+    {
         switch(state){
             case VisionState.Normal:
                 if (playerIsSeen)
@@ -65,35 +66,6 @@ public class Vision : MonoBehaviour
                 Debug.Log("You dead, bro");
                 break;
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        Vector2 pos = new Vector2(transform.position.x, transform.position.y);
-        Vector2 targetPos = new Vector2(target.position.x, target.position.y);
-
-        var currAngle = Vector2.Angle(transform.up.normalized, (targetPos - pos).normalized);
-
-        if(currAngle <= halfAngle){
-            Debug.Log("Found player..");
-            // Check for any blocking objects between this and the target
-            RaycastHit2D hit = Physics2D.Raycast(pos, targetPos - pos);
-            if(hit.collider == null){
-                //Debug.Log("Nothing between Player...");
-                ResolveSeenState(true);
-            }
-            else if(hit.collider.tag == "Player"){
-                //Debug.Log("Found Player...");
-                ResolveSeenState(true);
-            }
-            else{
-                //Debug.Log($"Blocked sight by {hit.collider.name}...");
-                ResolveSeenState(false);
-            }
-        }
-        else {
-            //Debug.Log("Not the right angle..");
-            ResolveSeenState(false);
-        }
+        return state;
     }
 }

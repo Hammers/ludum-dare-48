@@ -98,7 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visionConePrefab: {fileID: 7950322168777267906, guid: 997003627372589429859430137e3778, type: 3}
   angle: 45
-  distance: 20
+  distance: 5
+  state: 0
 --- !u!50 &1528642407446841900
 Rigidbody2D:
   serializedVersion: 4

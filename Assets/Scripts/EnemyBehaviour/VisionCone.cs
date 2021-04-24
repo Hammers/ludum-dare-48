@@ -31,6 +31,7 @@ public class VisionCone : MonoBehaviour
         angleStep = totalAngle / RAY_COUNT;
 
         distance = vision.distance;
+        Debug.Log(distance);
     }
 
     Vector3 GetVectorFromAngle(float angle){
@@ -47,6 +48,7 @@ public class VisionCone : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        bool seenPlayer = false;
         var origin = vision.transform.position;
         float angle = GetAngleFromVectorFloat(vision.transform.up)+(totalAngle/2);
 
@@ -64,8 +66,12 @@ public class VisionCone : MonoBehaviour
             if (raycastHit2D.collider == null){
                 vertext = origin + GetVectorFromAngle(angle) * distance;
             }
-            else{
-                //Debug.Log("Colliding with "+raycastHit2D.collider.name+" setting point to "+raycastHit2D.point);
+            else
+            {
+                // Check if this is the player and set seen to true if so
+                if(raycastHit2D.collider.tag == "Player")
+                    seenPlayer = true;
+
                 vertext = raycastHit2D.point;
             }
             vertices[vertexIndex] = vertext;
@@ -84,8 +90,9 @@ public class VisionCone : MonoBehaviour
         coneMesh.uv = uvs;
         coneMesh.triangles = triangles;
         
-        if(lastState != vision.state){
-            switch(vision.state){
+        var currentState = vision.ResolveSeenState(seenPlayer, Time.deltaTime);
+        if(lastState != currentState){
+            switch(currentState){
                 case Vision.VisionState.Normal:
                     mRenderer.material = normalMat;
                     break;
@@ -99,7 +106,7 @@ public class VisionCone : MonoBehaviour
                     mRenderer.material = alertMat;
                     break;
             }
-            lastState = vision.state;
+            lastState = currentState;
         }
     }
 }
