@@ -10,9 +10,6 @@ public class CharacterMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticaltInput = Input.GetAxis("Vertical");
 
-        Debug.Log(horizontalInput.ToString());
-        Debug.Log(verticaltInput.ToString());
-
         var step = Time.deltaTime * MOVEMENT_SPEED;
         var currPos = transform.position;
         currPos += (new Vector3(horizontalInput, verticaltInput, 0f) * step);
