@@ -244,7 +244,7 @@ public class MapGenerator : MonoBehaviour
         }
         foreach (var terminal in terminals)
         {
-            int newcoins = Mathf.RoundToInt(terminal.Coins * (newPos.x + newPos.y * _distanceTreasureMultiplier));
+            int newcoins = Mathf.RoundToInt(terminal.Coins * ((Mathf.Abs(newPos.x) + Mathf.Abs(newPos.y)) * _distanceTreasureMultiplier));
             Debug.Log($"Setting terminal coins to {newcoins}");
             terminal.Coins = newcoins;
         }

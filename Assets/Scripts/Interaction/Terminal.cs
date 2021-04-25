@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
-public class Terminal : MonoBehaviour, IPointerClickHandler
+public class Terminal : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite _activeSprite;
@@ -51,6 +51,8 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         _interactionBar.gameObject.SetActive(false);
         _spriteRenderer.sprite = _inActiveSprite;
         _characterInRange.RegainControl();
+        _characterInRange.ExitInteractionZone();
+        _characterInRange = null;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -63,6 +65,7 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         var character = other.GetComponent<Character>();
         if (character != null)
         {
+            character.EnterInteractionZone();
             _characterInRange = character;
             _spriteRenderer.color = Color.green;
         }
@@ -74,27 +77,32 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
-
+        
+        
         var character = other.GetComponent<Character>();
         if (character != null)
         {
+            character.ExitInteractionZone();
             _characterInRange = null;
             _spriteRenderer.color = Color.white;
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void Update()
     {
         if (_used)
         {
             return;
         }
-
-        if (_characterInRange != null)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            _used = true;
-            _characterInRange.ForceToPosition(interactionPoint.position,
-                Vector2.Angle(interactionPoint.position, transform.position) + 90, Interact);
+            if (_characterInRange != null)
+            {
+                _used = true;
+                _characterInRange.ForceToPosition(interactionPoint.position,
+                    Vector2.Angle(interactionPoint.position, transform.position) + 90, Interact);
+            }
         }
     }
+    
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public event Action EnteredInteractionZone;
+    public event Action ExitedInteractionZone;
+    
     private CharacterMovement _characterMovement;
     private CharacterRotation _characterRotation;
     private Rigidbody2D _rb;
@@ -15,6 +18,16 @@ public class Character : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
+    public void EnterInteractionZone()
+    {
+        EnteredInteractionZone?.Invoke();
+    }
+    
+    public void ExitInteractionZone()
+    {
+        ExitedInteractionZone?.Invoke();
+    }
+    
     public void OverrideMovement()
     {
         _characterMovement.enabled = false;
