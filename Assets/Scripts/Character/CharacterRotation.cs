@@ -10,6 +10,21 @@ public class CharacterRotation : MonoBehaviour
         cam = Camera.main;
     }
 
+    private void OnEnable()
+    {
+        GameManager.Instance.NewSessionStarted += OnSessionRestarted;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.NewSessionStarted += OnSessionRestarted;
+    }
+    
+    private void OnSessionRestarted()
+    {
+        enabled = true;
+    }
+    
     // Update is called once per frame
     void Update()
     {

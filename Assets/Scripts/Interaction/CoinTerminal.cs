@@ -11,7 +11,7 @@ public class CoinTerminal : Terminal
         set => _coins = value;
     }
 
-    public override void UseTerminal()
+    protected override void UseTerminal()
     {
         CharacterInRange.GetComponent<CharacterInventory>().AddCoins(Random.Range(_coins - 3, _coins + 3));
     }

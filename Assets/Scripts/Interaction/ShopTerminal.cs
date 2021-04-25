@@ -1,7 +1,7 @@
 public class ShopTerminal : Terminal
 {
-    public override void UseTerminal()
+    protected override void UseTerminal()
     {
-        GetComponent<Shop>().OpenShop(() => Reactivate());
+        GetComponent<Shop>().OpenShop(() => Reset());
     }
 }

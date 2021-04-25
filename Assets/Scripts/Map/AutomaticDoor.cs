@@ -10,6 +10,14 @@
         public Transform Transform => transform;
         private bool _opened;
 
+        public AudioClip audioClip;
+        private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
         public void OpenDoor()
         {
             if (_opened)
@@ -20,6 +28,7 @@
             if (_animator)
             {
                 _animator.SetBool("open", true);
+            audioSource.PlayOneShot(audioClip,0.5f);
             }
             _opened = true;
             if (MapGenerator.Instance.GetRoomAtCellPos(

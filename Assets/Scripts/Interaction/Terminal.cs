@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
-public class Terminal : MonoBehaviour, IPointerClickHandler
+public class Terminal : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite _activeSprite;
@@ -18,11 +18,10 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
     public AudioClip audioClip;
     private AudioSource audioSource;
 
-
     private Character _characterInRange;
-    private bool _used;
 
     public Character CharacterInRange => _characterInRange;
+    private bool _used;
 
     public void Start()
     {
@@ -30,17 +29,24 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         audioSource = GetComponent<AudioSource>();
     }
 
+    public void Reset()
+    {
+        _spriteRenderer.sprite = _activeSprite;
+        _used = false;
+        _spriteRenderer.color = Color.white;
+    }
+    
     public void Interact()
     {
         audioSource.PlayOneShot(audioClip, 1.0f);
         StartCoroutine(InteractCo());
     }
 
-    public virtual void UseTerminal()
+    protected virtual void UseTerminal()
     {
 
     }
-
+    
     public IEnumerator InteractCo()
     {
         _spriteRenderer.color = Color.white;
@@ -52,11 +58,9 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         _interactionBar.gameObject.SetActive(false);
         _spriteRenderer.sprite = _inActiveSprite;
         _characterInRange.RegainControl();
-    }
-
-    public void Reactivate(){
-        _used = false;
-        _spriteRenderer.sprite = _activeSprite;
+        _characterInRange.ExitInteractionZone();
+        _characterInRange = null;
+        GameManager.Instance.AddUsedTerminal(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -69,6 +73,7 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         var character = other.GetComponent<Character>();
         if (character != null)
         {
+            character.EnterInteractionZone();
             _characterInRange = character;
             _spriteRenderer.color = Color.green;
         }
@@ -80,27 +85,32 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
-
+        
+        
         var character = other.GetComponent<Character>();
         if (character != null)
         {
+            character.ExitInteractionZone();
             _characterInRange = null;
             _spriteRenderer.color = Color.white;
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void Update()
     {
         if (_used)
         {
             return;
         }
-
-        if (_characterInRange != null)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            _used = true;
-            _characterInRange.ForceToPosition(interactionPoint.position,
-                Vector2.Angle(interactionPoint.position, transform.position) + 90, Interact);
+            if (_characterInRange != null)
+            {
+                _used = true;
+                _characterInRange.ForceToPosition(interactionPoint.position,
+                    Vector2.Angle(interactionPoint.position, transform.position) + 90, Interact);
+            }
         }
     }
+    
 }

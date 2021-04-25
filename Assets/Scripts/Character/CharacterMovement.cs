@@ -1,13 +1,32 @@
+using System;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
     private const float MOVEMENT_SPEED = 10f;
     private Rigidbody2D rb;
-
+    private Vector3 _startPos;
     void Start(){
         rb = GetComponent<Rigidbody2D>();
+        _startPos = transform.position;
     }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.NewSessionStarted += OnSessionRestarted;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.NewSessionStarted += OnSessionRestarted;
+    }
+    
+    private void OnSessionRestarted()
+    {
+        transform.position = _startPos;
+        enabled = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
