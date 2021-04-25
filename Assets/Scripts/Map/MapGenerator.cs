@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum Direction
 {
@@ -58,21 +60,43 @@ public class MapGenerator : MonoBehaviour
         return new Vector2Int(Mathf.FloorToInt(worldPos.x / _roomWorldSizeX), Mathf.FloorToInt(worldPos.y / _roomWorldSizeY));
     }
     
-    private bool CanAddRoomToMap(Room room, Vector2Int pos)
+    private bool CanAddRoomToMap(Room room, Vector2Int pos, Direction dir, out Vector2Int chosenSpawnCell)
     {
-        for (int x = pos.x; x < pos.x + room.Width; x++)
+        List<IDoor> allDoors = room.Doors;
+        List<IDoor> oppositeDoors = allDoors.FindAll(x => x.Direction == OppositeDirection(dir));
+        if (oppositeDoors.Count == 0)
         {
-            for (int y = pos.y; y < pos.y + room.Height; y++)
-            {
-                var cell = new Vector2Int(x, y);
-                if (_rooms.ContainsKey(cell))
-                {
-                    return false;
-                }
-            }
+            chosenSpawnCell = pos;
+            return false;
         }
 
-        return true;
+        oppositeDoors.Shuffle();
+        foreach (var door in room.Doors)
+        {
+            bool collides = false;
+            Vector2Int doorCellPos = GetCellPosFromWorldPos(door.Transform.localPosition);
+            Vector2Int bottomPos = pos - doorCellPos;
+            for (int x = bottomPos.x; x < bottomPos.x + room.Width; x++)
+            {
+                for (int y = bottomPos.y; y < bottomPos.y + room.Height; y++)
+                {
+                    var cell = new Vector2Int(x, y);
+                    if (_rooms.ContainsKey(cell))
+                    {
+                        collides = true;
+                    }
+                }
+            }
+
+            if (!collides)
+            {
+                chosenSpawnCell = bottomPos;
+                return true;
+            }
+        }
+        
+        chosenSpawnCell = pos;
+        return false;
     }
 
     private void AddRoomToMap(Room room, Vector2Int pos)
@@ -82,24 +106,59 @@ public class MapGenerator : MonoBehaviour
             for (int y = pos.y; y < pos.y + room.Height; y++)
             {
                 var cell = new Vector2Int(x, y);
+
                 _rooms.Add(cell, room);
             }
         }
     }
     
-    public void AddRandomRoom(Vector2Int currentPos, Vector2Int direction)
+    public void AddRandomRoom(Vector2Int currentPos, Direction direction)
     {
-        var newPos = currentPos + direction;
+        var newPos = currentPos + DirToV2(direction);
         List<Room> potentialRooms = new List<Room>(_roomPrefabs);
         Room selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
         potentialRooms.Remove(selectedRoom);
-        while (!CanAddRoomToMap(selectedRoom, newPos) && potentialRooms.Count > 0)
+        Vector2Int spawnPos;
+        while (!CanAddRoomToMap(selectedRoom, newPos, direction, out spawnPos) && potentialRooms.Count > 0)
         {
             selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
             potentialRooms.Remove(selectedRoom);
         }
         var spawnedRoom = Instantiate(selectedRoom, transform);
-        spawnedRoom.transform.position = new Vector3(newPos.x * _roomWorldSizeX, newPos.y * _roomWorldSizeY);
-        AddRoomToMap(spawnedRoom,newPos);
+        spawnedRoom.transform.position = new Vector3(spawnPos.x * _roomWorldSizeX, spawnPos.y * _roomWorldSizeY);
+        AddRoomToMap(spawnedRoom,spawnPos);
+    }
+
+    public static Vector2Int DirToV2(Direction dir)
+    {
+        switch(dir)
+        {
+            case Direction.Up:
+                return Vector2Int.up;
+            case Direction.Down:
+                return Vector2Int.down;
+            case Direction.Left:
+                return Vector2Int.left;
+            case Direction.Right:
+                return Vector2Int.right;
+        }
+        return Vector2Int.zero;
+    }
+
+    public static Direction OppositeDirection(Direction dir)
+    {
+        switch (dir)
+        {
+            case Direction.Up:
+                return Direction.Down;
+            case Direction.Down:
+                return Direction.Up;
+            case Direction.Left:
+                return Direction.Right;
+            case Direction.Right:
+                return Direction.Left;
+        }
+
+        return Direction.Up;
     }
 }

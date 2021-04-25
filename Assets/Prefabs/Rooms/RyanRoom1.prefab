@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 0
+  delay: 0
 --- !u!1 &757728849992224920
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &1191370915564837372
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &1278775513806276055
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &1337985913651188560
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &2020275149366445921
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &2437524119113892002
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &2535853997708295825
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &2684799097266879686
 GameObject:
   m_ObjectHideFlags: 0
@@ -9562,6 +9570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &4135007120975598370
 GameObject:
   m_ObjectHideFlags: 0
@@ -11835,6 +11844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &5076941664325337039
 GameObject:
   m_ObjectHideFlags: 0
@@ -11879,6 +11889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &5086807437403104053
 GameObject:
   m_ObjectHideFlags: 0
@@ -11923,6 +11934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &5206907811000607138
 GameObject:
   m_ObjectHideFlags: 0
@@ -11967,6 +11979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &5488356793435144234
 GameObject:
   m_ObjectHideFlags: 0
@@ -12011,6 +12024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &5784051484468726302
 GameObject:
   m_ObjectHideFlags: 0
@@ -12055,6 +12069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &6441677866596682842
 GameObject:
   m_ObjectHideFlags: 0
@@ -12099,6 +12114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &6828240750125458388
 GameObject:
   m_ObjectHideFlags: 0
@@ -12143,6 +12159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 0
+  delay: 0
 --- !u!1 &7112353644410226495
 GameObject:
   m_ObjectHideFlags: 0
@@ -12187,6 +12204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 0
+  delay: 0
 --- !u!1 &7181676606738563308
 GameObject:
   m_ObjectHideFlags: 0
@@ -12231,6 +12249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &7333793412163626770
 GameObject:
   m_ObjectHideFlags: 0
@@ -12275,6 +12294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &7988593495853075680
 GameObject:
   m_ObjectHideFlags: 0
@@ -12319,6 +12339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 0
+  delay: 0
 --- !u!1 &8166326681699187029
 GameObject:
   m_ObjectHideFlags: 0
@@ -12363,6 +12384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  delay: 0
 --- !u!1 &8361161271452162410
 GameObject:
   m_ObjectHideFlags: 0
@@ -12445,6 +12467,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 3
   height: 3
+  _doors:
+  - {fileID: 2287176069140007005}
+  - {fileID: 1033970477093486991}
+  - {fileID: 8680077117603709307}
+  - {fileID: 8386932892459353809}
 --- !u!1001 &341766358289147027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12811,6 +12838,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4195353012587396815, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
   m_PrefabInstance: {fileID: 2322269378650687964}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2287176069140007005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4577897160550416769, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
+  m_PrefabInstance: {fileID: 2322269378650687964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2554451767248960042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13041,6 +13073,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4195353012587396815, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
   m_PrefabInstance: {fileID: 3593471858621972494}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1033970477093486991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4577897160550416769, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
+  m_PrefabInstance: {fileID: 3593471858621972494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4653978548324839366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13209,6 +13246,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4195353012587396815, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
   m_PrefabInstance: {fileID: 5184242474618749178}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8680077117603709307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4577897160550416769, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
+  m_PrefabInstance: {fileID: 5184242474618749178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5468401503661508432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13270,6 +13312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
+--- !u!1 &8386932892459353809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4577897160550416769, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
+  m_PrefabInstance: {fileID: 5468401503661508432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8204231855538846111 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4195353012587396815, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
