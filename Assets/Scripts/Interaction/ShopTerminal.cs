@@ -4,5 +4,6 @@ public class ShopTerminal : Terminal
     {
         PlayerBank.instance.TransferFunds();
         GetComponent<Shop>().OpenShop(() => Reset());
+        EndActivation();
     }
 }

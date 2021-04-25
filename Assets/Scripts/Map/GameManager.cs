@@ -5,11 +5,12 @@
     public class GameManager : MonoBehaviour
     {
         public event Action NewSessionStarted;
+        public event Action<CoinTerminal> CoinTerminalActivated;
         
         private static GameManager _instance;
         public static GameManager Instance => _instance;
 
-        private List<Terminal> _terminalsActivatedThisSession = new List<Terminal>();
+        private List<CoinTerminal> _terminalsActivatedThisSession = new List<CoinTerminal>();
         
         
         public void Awake()
@@ -33,7 +34,12 @@
             NewSessionStarted?.Invoke();
         }
 
-        public void AddUsedTerminal(Terminal terminal)
+        public void ActivateCoinTerminal(CoinTerminal terminal)
+        {
+            CoinTerminalActivated?.Invoke(terminal);
+        }
+        
+        public void AddUsedTerminal(CoinTerminal terminal)
         {
             _terminalsActivatedThisSession.Add(terminal);
         }

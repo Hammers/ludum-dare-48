@@ -7,9 +7,9 @@ using Random = UnityEngine.Random;
 
 public class Terminal : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Sprite _activeSprite;
-    [SerializeField] private Sprite _inActiveSprite;
+    [SerializeField] protected SpriteRenderer _spriteRenderer;
+    [SerializeField] protected Sprite _activeSprite;
+    [SerializeField] protected Sprite _inActiveSprite;
     [SerializeField] private float interactionTime;
     [SerializeField] private Transform interactionPoint;
 
@@ -21,8 +21,8 @@ public class Terminal : MonoBehaviour
     private Character _characterInRange;
 
     public Character CharacterInRange => _characterInRange;
-    private bool _used;
-
+    protected bool _used;
+    private bool _using;
     public void Start()
     {
         _interactionBar.gameObject.SetActive(false);
@@ -44,7 +44,7 @@ public class Terminal : MonoBehaviour
 
     protected virtual void UseTerminal()
     {
-
+        EndActivation();
     }
     
     public IEnumerator InteractCo()
@@ -55,17 +55,20 @@ public class Terminal : MonoBehaviour
         _interactionBar._fillImage.DOFillAmount(1f, interactionTime).SetEase(Ease.Linear);
         yield return new WaitForSeconds(interactionTime);
         UseTerminal();
+    }
+
+    public void EndActivation()
+    {
+        _using = false;
         _interactionBar.gameObject.SetActive(false);
-        _spriteRenderer.sprite = _inActiveSprite;
         _characterInRange.RegainControl();
         _characterInRange.ExitInteractionZone();
         _characterInRange = null;
-        GameManager.Instance.AddUsedTerminal(this);
     }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (_used)
+        if (_used || _using)
         {
             return;
         }
@@ -81,7 +84,7 @@ public class Terminal : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (_used)
+        if (_used || _using)
         {
             return;
         }
@@ -98,7 +101,7 @@ public class Terminal : MonoBehaviour
 
     public void Update()
     {
-        if (_used)
+        if (_used || _using)
         {
             return;
         }
@@ -106,7 +109,7 @@ public class Terminal : MonoBehaviour
         {
             if (_characterInRange != null)
             {
-                _used = true;
+                _using = true;
                 _characterInRange.ForceToPosition(interactionPoint.position,
                     Vector2.Angle(interactionPoint.position, transform.position) + 90, Interact);
             }
