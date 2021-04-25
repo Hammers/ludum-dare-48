@@ -7,4 +7,5 @@ public class PatrolPoint : MonoBehaviour
         Move
     }
     public PointType pointType;
+    public float delay;
 }

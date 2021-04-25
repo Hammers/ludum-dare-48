@@ -23,6 +23,7 @@ public class Patrolling : MonoBehaviour
     private Vector3 targetRot;
     private float rotProgress;
     private Transform huntTarget;
+    private float delayTimer;
 
     // Moving
     [SerializeField] private float movementSpeed = 100f;
@@ -44,7 +45,7 @@ public class Patrolling : MonoBehaviour
         Debug.Log("Now turning to next target...");
         state = PatrolState.Turning;
         startRot = transform.up;
-        targetRot = (targetPatrolPoint.transform.position - transform.position).normalized;
+        targetRot = (new Vector3(targetPatrolPoint.transform.position.x, targetPatrolPoint.transform.position.y, 0f) - transform.position).normalized;
         rotProgress = 0f;
     }
 
@@ -95,9 +96,18 @@ public class Patrolling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(state){
+        switch(state)
+        {
             case PatrolState.None:
-                GetNextTarget();
+                if(targetPatrolPoint != null
+                && targetPatrolPoint.delay > 0
+                && delayTimer < targetPatrolPoint.delay){
+                    delayTimer += Time.deltaTime;
+                }
+                else{
+                    delayTimer = 0f;
+                    GetNextTarget();
+                }
                 break;
             case PatrolState.Turning:
                 TurnToTarget();
@@ -122,7 +132,7 @@ public class Patrolling : MonoBehaviour
     {
         Debug.Log("Stop Hunting...");
         if(state == PatrolState.Hunting)
-            state = PatrolState.None;
+            state = PatrolState.Turning;
         huntTarget = null;
     }
 }
