@@ -89,8 +89,8 @@ public class Patrolling : MonoBehaviour
                 state = PatrolState.None;
             }
         }
-        else{
-
+        else
+        {
             transform.up = Vector3.Slerp(startRot, targetRot, rotProgress);
         }
     }

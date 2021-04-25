@@ -48,6 +48,13 @@ public class VisionCone : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if(!vision.enabled){
+            mRenderer.enabled = false;
+            return;
+        }
+        else
+            mRenderer.enabled = true;
+        
         int raysTouchingPlayer = 0;
         var origin = vision.transform.position;
         float angle = GetAngleFromVectorFloat(vision.transform.up)+(totalAngle/2);

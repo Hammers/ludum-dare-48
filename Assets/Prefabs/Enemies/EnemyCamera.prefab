@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6773145890636263797}
   - component: {fileID: 5549532285450163742}
   - component: {fileID: 1144481172159302870}
-  m_Layer: 0
+  - component: {fileID: 3209210977354534662}
+  m_Layer: 2
   m_Name: EnemyCamera
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,3 +142,19 @@ MonoBehaviour:
   huntSpeed: 100
   searchSpeedModifier: 1.5
   movementSpeed: 0
+--- !u!58 &3209210977354534662
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6773145890636263798}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
