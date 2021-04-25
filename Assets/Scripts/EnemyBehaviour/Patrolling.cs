@@ -14,6 +14,7 @@ public class Patrolling : MonoBehaviour
     private int targetPatrolPointIndex = 0;
     private PatrolPoint targetPatrolPoint;
     private Rigidbody2D rb;
+    private Vision vision;
 
     // Turning
     [SerializeField] private float rotationSpeed = 2.5f;
@@ -32,9 +33,9 @@ public class Patrolling : MonoBehaviour
     {
         Debug.Log("Start...");
         rb = GetComponent<Rigidbody2D>();
+        vision = GetComponent<Vision>();
         targetPatrolPoint = patrolPoints[targetPatrolPointIndex];
-        state = PatrolState.Turning;
-        PrepareToTurn();
+        SetStateForTarget();
     }
 
     private void GetNextTarget()
@@ -43,10 +44,21 @@ public class Patrolling : MonoBehaviour
         if (targetPatrolPointIndex >= patrolPoints.Length)
             targetPatrolPointIndex = 0;
         targetPatrolPoint = patrolPoints[targetPatrolPointIndex];
-        
-        Debug.Log("Now turning to next target...");
-        state = PatrolState.Turning;
-        PrepareToTurn();
+        SetStateForTarget();
+    }
+
+    private void SetStateForTarget(){
+        switch(targetPatrolPoint.pointType){
+            case PatrolPoint.PointType.MoveTo:
+                state = PatrolState.Moving;
+                break;
+            case PatrolPoint.PointType.LookAt:
+            case PatrolPoint.PointType.LookAtAndMoveTo:
+                Debug.Log("Now turning to next target...");
+                PrepareToTurn();
+                state = PatrolState.Turning;
+                break;
+        }
     }
 
     private void PrepareToTurn()
@@ -56,15 +68,20 @@ public class Patrolling : MonoBehaviour
         rotProgress = 0f;
     }
 
+    private bool IsSearchingForPlayer()
+    {
+        return vision != null && vision.state == Vision.VisionState.Searching;
+    }
+
     private void TurnToTarget()
     {
         var progressStep = Time.deltaTime * rotationSpeed;
-        if(GetComponent<Vision>().state == Vision.VisionState.Searching)
+        if(IsSearchingForPlayer())
             progressStep *= searchSpeedModifier;
 
         rotProgress += progressStep;
         if(rotProgress >= 1f){
-            if (targetPatrolPoint.pointType == PatrolPoint.PointType.Move){
+            if (targetPatrolPoint.pointType == PatrolPoint.PointType.LookAtAndMoveTo){
                 transform.up = targetRot;
                 state = PatrolState.Moving;
             }
@@ -92,7 +109,7 @@ public class Patrolling : MonoBehaviour
             var forces = targetPatrolPoint.transform.position - transform.position;
             forces.Normalize();
             var forceStrength = Time.deltaTime * movementSpeed;
-            if(GetComponent<Vision>().state == Vision.VisionState.Searching)
+            if(IsSearchingForPlayer())
                 forceStrength *= searchSpeedModifier;
 
             forces *= forceStrength;

@@ -4,7 +4,8 @@ public class PatrolPoint : MonoBehaviour
 {
     public enum PointType{
         LookAt,
-        Move
+        LookAtAndMoveTo,
+        MoveTo,
     }
     public PointType pointType;
     public float delay;
