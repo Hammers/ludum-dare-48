@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -242,7 +243,7 @@ public class MapGenerator : MonoBehaviour
                 spawnedRoom.transform.position + new Vector3(_roomWorldSizeX / 2, _roomWorldSizeY / 2);
             terminals.Add(terminal);
         }
-        foreach (var terminal in terminals)
+        foreach (var terminal in terminals.Where(x => x is CoinTerminal).Cast<CoinTerminal>())
         {
             int newcoins = Mathf.RoundToInt(terminal.Coins * (newPos.x + newPos.y * _distanceTreasureMultiplier));
             Debug.Log($"Setting terminal coins to {newcoins}");

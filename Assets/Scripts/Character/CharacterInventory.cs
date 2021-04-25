@@ -13,4 +13,8 @@ public class CharacterInventory : MonoBehaviour
         coins += amount;
         CoinsCollected?.Invoke(prev,coins);
     }
+
+    public int GetCoins(){
+        return coins;
+    }
 }

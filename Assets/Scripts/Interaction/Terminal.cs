@@ -14,19 +14,15 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Transform interactionPoint;
 
     [SerializeField] private InteractionBar _interactionBar;
-    [SerializeField] private int _coins;
 
     public AudioClip audioClip;
     private AudioSource audioSource;
 
-    public int Coins
-    {
-        get => _coins;
-        set => _coins = value;
-    }
 
     private Character _characterInRange;
     private bool _used;
+
+    public Character CharacterInRange => _characterInRange;
 
     public void Start()
     {
@@ -40,6 +36,11 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         StartCoroutine(InteractCo());
     }
 
+    public virtual void UseTerminal()
+    {
+
+    }
+
     public IEnumerator InteractCo()
     {
         _spriteRenderer.color = Color.white;
@@ -47,10 +48,15 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
         _interactionBar._fillImage.fillAmount = 0;
         _interactionBar._fillImage.DOFillAmount(1f, interactionTime).SetEase(Ease.Linear);
         yield return new WaitForSeconds(interactionTime);
-        _characterInRange.GetComponent<CharacterInventory>().AddCoins(Random.Range(_coins - 3, _coins + 3));
+        UseTerminal();
         _interactionBar.gameObject.SetActive(false);
         _spriteRenderer.sprite = _inActiveSprite;
         _characterInRange.RegainControl();
+    }
+
+    public void Reactivate(){
+        _used = false;
+        _spriteRenderer.sprite = _activeSprite;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -1,11 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
     public static AbilityManager instance;
 
-    [SerializeField] private Ability[] abilities;
+    private List<Ability> availableAbilities = new List<Ability>();
     // Start is called before the first frame update
 
     [SerializeField] private Ability leftClickAbility;
@@ -32,5 +33,10 @@ public class AbilityManager : MonoBehaviour
 
     public void RunCoroutine(IEnumerator co){
         StartCoroutine(co);
+    }
+
+    public void AddAbility(Ability ability)
+    {
+        availableAbilities.Add(ability);
     }
 }
