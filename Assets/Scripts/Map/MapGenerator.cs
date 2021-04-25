@@ -22,6 +22,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] float _roomWorldSizeY = 1;
     [SerializeField] private Room _startRoom;
     [SerializeField] private List<Room> _roomPrefabs;
+    [SerializeField] private List<Room> _safetyRoomPrefabs;
     private Dictionary<Vector2Int, Room> _rooms = new Dictionary<Vector2Int, Room>();
 
     void Awake()
@@ -62,22 +63,25 @@ public class MapGenerator : MonoBehaviour
     
     private bool CanAddRoomToMap(Room room, Vector2Int pos, Direction dir, out Vector2Int chosenSpawnCell)
     {
-        Debug.Log($"--Checking {room.name}- spawn: {pos}, dir: {dir.ToString()} ");
+        //Debug.Log($"--Checking {room.name}- spawn: {pos}, dir: {dir.ToString()} ");
         List<IDoor> allDoors = room.Doors;
         List<IDoor> oppositeDoors = allDoors.FindAll(x => x.Direction == OppositeDirection(dir));
+        Debug.Log($"--Checking number of doors- allDoors: {allDoors.Count}, oppositeDoor:{oppositeDoors.Count}");
         if (oppositeDoors.Count == 0)
         {
+            //Debug.Log($"No Opposite doors (direction {OppositeDirection(dir)}");
             chosenSpawnCell = pos;
             return false;
         }
 
-        oppositeDoors.Shuffle();
+        //oppositeDoors.Shuffle();
+        Debug.Log($"-- Going through opposite doors");
         foreach (var door in oppositeDoors)
         {   
 
             bool collides = false;
             Vector2Int doorCellPos = GetCellPosFromWorldPos(door.Transform.localPosition);
-            Debug.Log($"----Checking door at local cell{doorCellPos} ");
+            //Debug.Log($"----Checking door at local cell{doorCellPos} ");
             Vector2Int bottomPos = pos - doorCellPos;
             for (int x = bottomPos.x; x < bottomPos.x + room.Width; x++)
             {
@@ -86,7 +90,7 @@ public class MapGenerator : MonoBehaviour
                     var cell = new Vector2Int(x, y);
                     if (_rooms.ContainsKey(cell))
                     {
-                        Debug.Log($"----Collided at {cell}");
+                        //Debug.Log($"----Collided at {cell}");
                         collides = true;
                     }
                 }
@@ -94,9 +98,59 @@ public class MapGenerator : MonoBehaviour
 
             if (!collides)
             {
-                Debug.Log($"----No Collisions!");
-                chosenSpawnCell = bottomPos;
-                return true;
+                //Debug.Log($"----No Collisions!");
+
+                bool doorMismatch = false;
+                for (int x = bottomPos.x; x < bottomPos.x + room.Width;x++)
+                {
+                    Vector2Int checkingCell = new Vector2Int(x, bottomPos.y);
+                    Vector2Int oppositeCell = new Vector2Int(x, bottomPos.y - 1);
+                    Room r = GetRoomAtCellPos(oppositeCell);
+                    if (r != null && r.HasDoor(oppositeCell- GetCellPosFromWorldPos(r.transform.position), Direction.Up) != room.HasDoor(checkingCell - bottomPos, Direction.Down))
+                    {
+                        //Debug.Log($"----No matching door - existing room:{oppositeCell- GetCellPosFromWorldPos(r.transform.position)}, new room: {checkingCell - bottomPos}");
+                        doorMismatch = true;
+                        break;
+                    }
+                    checkingCell = new Vector2Int(x, bottomPos.y + (room.Height -1));
+                    oppositeCell = new Vector2Int(x, bottomPos.y + room.Height);
+                    r = GetRoomAtCellPos(oppositeCell);
+                    if (r != null && r.HasDoor(oppositeCell- GetCellPosFromWorldPos(r.transform.position), Direction.Down) != room.HasDoor(checkingCell - bottomPos, Direction.Up))
+                    {
+                        //Debug.Log($"----No matching door - existing room:{oppositeCell- GetCellPosFromWorldPos(r.transform.position)}, new room: {checkingCell - bottomPos}");
+
+                        doorMismatch = true;
+                        break;
+                    }
+                }
+                for (int y = bottomPos.y; y < bottomPos.y + room.Height;y++)
+                {
+                    Vector2Int checkingCell = new Vector2Int(bottomPos.x, y);
+                    Vector2Int oppositeCell = new Vector2Int(bottomPos.x - 1, y);
+                    Room r = GetRoomAtCellPos(oppositeCell);
+                    if (r != null && r.HasDoor(oppositeCell - GetCellPosFromWorldPos(r.transform.position), Direction.Right) != room.HasDoor(checkingCell - bottomPos, Direction.Left))
+                    {
+                        //Debug.Log($"----No matching door - existing room:{oppositeCell- GetCellPosFromWorldPos(r.transform.position)}, new room: {checkingCell - bottomPos}");
+                        doorMismatch = true;
+                        break;
+                    }
+                    checkingCell = new Vector2Int( bottomPos.x + (room.Width - 1),y);
+                    oppositeCell = new Vector2Int( bottomPos.x + room.Width,y);
+                    r = GetRoomAtCellPos(oppositeCell);
+                    if (r != null && r.HasDoor(oppositeCell- GetCellPosFromWorldPos(r.transform.position), Direction.Left) != room.HasDoor(checkingCell - bottomPos, Direction.Right))
+                    {
+                        //Debug.Log($"----No matching door - existing room:{oppositeCell- GetCellPosFromWorldPos(r.transform.position)}, new room: {checkingCell - bottomPos}");
+                        doorMismatch = true;
+                        break;
+                    }
+                }
+
+                if (!doorMismatch)
+                {
+                    //Debug.Log($"----No Doormismatch!");
+                    chosenSpawnCell = bottomPos;
+                    return true;
+                }
             }
         }
         
@@ -126,8 +180,22 @@ public class MapGenerator : MonoBehaviour
         Room selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
         potentialRooms.Remove(selectedRoom);
         Vector2Int spawnPos;
-        while (!CanAddRoomToMap(selectedRoom, newPos, direction, out spawnPos) && potentialRooms.Count > 0)
+        bool addedSafetyRooms = false;
+        while (!CanAddRoomToMap(selectedRoom, newPos, direction, out spawnPos) )
         {
+            if (potentialRooms.Count == 0)
+            {
+                if (!addedSafetyRooms)
+                {
+                    potentialRooms.AddRange(_safetyRoomPrefabs);
+                    addedSafetyRooms = true;
+                }
+                else
+                {
+                    Debug.LogError("No rooms to spawn");
+                    return;   
+                }
+            }
             selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
             potentialRooms.Remove(selectedRoom);
         }
