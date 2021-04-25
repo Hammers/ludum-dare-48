@@ -1,11 +1,13 @@
     using System;
     using UnityEngine;
 
-    public class AutomaticDoor : MonoBehaviour
+    public class AutomaticDoor : MonoBehaviour, IDoor
     {
         [SerializeField] private Direction _direction;
         [SerializeField] private Animator _animator;
-        
+
+        public Direction Direction => _direction;
+        public Transform Transform => transform;
         private bool _opened;
 
         public void OpenDoor()
@@ -19,30 +21,14 @@
             {
                 _animator.SetBool("open", true);
             }
-            Vector2Int dir = Vector2Int.zero;
-            switch (_direction)
-            {
-                case Direction.Up:
-                    dir = Vector2Int.up;
-                    break;
-                case Direction.Down:
-                    dir = Vector2Int.down;
-                    break;
-                case Direction.Left:
-                    dir = Vector2Int.left;
-                    break;
-                case Direction.Right:
-                    dir = Vector2Int.right;
-                    break;
-            }
             _opened = true;
             if (MapGenerator.Instance.GetRoomAtCellPos(
-                MapGenerator.Instance.GetCellPosFromWorldPos(transform.position) + dir) != null)
+                MapGenerator.Instance.GetCellPosFromWorldPos(transform.position) + MapGenerator.DirToV2(_direction)) != null)
             {
                 return;
             }
             
-            MapGenerator.Instance.AddRandomRoom(MapGenerator.Instance.GetCellPosFromWorldPos(transform.position),dir);
+            MapGenerator.Instance.AddRandomRoom(MapGenerator.Instance.GetCellPosFromWorldPos(transform.position),_direction);
         }
         
         private void OnTriggerEnter2D(Collider2D other)
