@@ -105,15 +105,16 @@ public class Patrolling : MonoBehaviour
 
     private void MoveToTarget()
     {
-        if(Vector3.Distance(transform.position, targetPatrolPoint.transform.position) > 0.01f){
-            var forces = targetPatrolPoint.transform.position - transform.position;
-            forces.Normalize();
-            var forceStrength = Time.deltaTime * movementSpeed;
-            if(IsSearchingForPlayer())
-                forceStrength *= searchSpeedModifier;
+        if(Vector3.Distance(transform.position, targetPatrolPoint.transform.position) > 0.01f)
+        {
+            Vector3 direction = targetPatrolPoint.transform.position - transform.position;
+            direction.Normalize();
+            var distance = Time.deltaTime * movementSpeed;
 
-            forces *= forceStrength;
-            rb.AddForce(forces);
+            if(IsSearchingForPlayer())
+                distance *= searchSpeedModifier;
+
+            transform.position += direction * distance;
         }
         else
             state = PatrolState.None;

@@ -109,7 +109,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417214442173066564}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -142,4 +142,4 @@ MonoBehaviour:
   rotationSpeed: 2.5
   huntSpeed: 200
   searchSpeedModifier: 1.5
-  movementSpeed: 250
+  movementSpeed: 2
