@@ -2462,7 +2462,7 @@ MonoBehaviour:
   rotationSpeed: 2.5
   huntSpeed: 5
   searchSpeedModifier: 1.5
-  movementSpeed: 100
+  movementSpeed: 1.5
 --- !u!50 &6588717982189773220
 Rigidbody2D:
   serializedVersion: 4
@@ -2471,7 +2471,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3004737160791225670}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3512,7 +3512,7 @@ MonoBehaviour:
   rotationSpeed: 2.5
   huntSpeed: 5
   searchSpeedModifier: 1.5
-  movementSpeed: 100
+  movementSpeed: 1.5
 --- !u!50 &2871795310645074612
 Rigidbody2D:
   serializedVersion: 4
@@ -3521,7 +3521,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4882713019893399334}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3753,7 +3753,7 @@ MonoBehaviour:
   rotationSpeed: 2.5
   huntSpeed: 5
   searchSpeedModifier: 1.5
-  movementSpeed: 100
+  movementSpeed: 1.5
 --- !u!50 &6099909374326509585
 Rigidbody2D:
   serializedVersion: 4
@@ -3762,7 +3762,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7439044290285265620}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -4045,7 +4045,7 @@ MonoBehaviour:
   rotationSpeed: 2.5
   huntSpeed: 5
   searchSpeedModifier: 1.5
-  movementSpeed: 100
+  movementSpeed: 1.5
 --- !u!50 &1467616781844864726
 Rigidbody2D:
   serializedVersion: 4
@@ -4054,7 +4054,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8829818146436449167}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
