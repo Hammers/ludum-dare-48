@@ -96,6 +96,7 @@ public class VisionCone : MonoBehaviour
         coneMesh.vertices = vertices;
         coneMesh.uv = uvs;
         coneMesh.triangles = triangles;
+        coneMesh.RecalculateBounds();
         
         var currentState = vision.ResolveSeenState(raysTouchingPlayer >= 1, Time.deltaTime);
         if(lastState != currentState){
