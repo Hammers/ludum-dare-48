@@ -17,6 +17,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text itemDescLabel;
     [SerializeField] private TMP_Text costLabel;
     [SerializeField] private TMP_Text buyButtonLabel;
+    [SerializeField] private TMP_Text coinsLabel;
 
     private List<ShopItem> availableItems;
     private List<ShopItem> ownedItems;
@@ -36,7 +37,9 @@ public class ShopUI : MonoBehaviour
         RefreshUI();
     }
 
-    private void RefreshUI(){
+    private void RefreshUI()
+    {
+        coinsLabel.text = coins.ToString();
         foreach(Transform child in shopItemParent){
             Destroy(child.gameObject);
         }

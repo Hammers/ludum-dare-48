@@ -18,7 +18,7 @@ public class Shop : MonoBehaviour
     }
 
     private int GetPlayerCoins(){
-        return FindObjectOfType<CharacterInventory>().GetCoins();
+        return PlayerBank.instance.coins;
     }
     public void OpenShop(Action closeCallback)
     {

@@ -293,6 +293,7 @@ MonoBehaviour:
   _uiPrefab: {fileID: 8388919259959264803, guid: cbdb68e2ebdc8b74a812625f7609a50b, type: 3}
   availableItems:
   - {fileID: 11400000, guid: 9295a0673505dd24ca73c5abe30fab50, type: 2}
+  - {fileID: 11400000, guid: b670e338c98915746b153fbf098e765c, type: 2}
   ownedItems: []
 --- !u!1 &2668903831248966186
 GameObject:

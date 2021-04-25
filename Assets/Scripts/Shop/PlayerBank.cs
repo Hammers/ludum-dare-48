@@ -6,10 +6,6 @@ public class PlayerBank : MonoBehaviour
 
     public int coins;
 
-    public Ability leftClickAbility;
-    public Ability rightClickAbility;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +15,12 @@ public class PlayerBank : MonoBehaviour
         }
 
         PlayerBank.instance = this;
+    }
+
+    public void TransferFunds()
+    {
+        var inventory = FindObjectOfType<CharacterInventory>();
+        coins += inventory.GetCoins();
+        inventory.ClearCoins();
     }
 }

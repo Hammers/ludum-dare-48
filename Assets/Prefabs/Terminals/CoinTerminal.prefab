@@ -155,7 +155,7 @@ MonoBehaviour:
   interactionPoint: {fileID: 2668903831248966187}
   _interactionBar: {fileID: 5496718075656200524}
   audioClip: {fileID: 8300000, guid: 76a56a6c07e4dcb48a5445d520888b3e, type: 3}
-  _coins: 0
+  _coins: 10
 --- !u!61 &2668903829885046146
 BoxCollider2D:
   m_ObjectHideFlags: 0

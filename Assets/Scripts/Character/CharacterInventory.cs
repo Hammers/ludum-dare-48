@@ -20,6 +20,10 @@ public class CharacterInventory : MonoBehaviour
 
     private void OnSessionRestarted()
     {
+        ClearCoins();
+    }
+
+    public void ClearCoins(){
         coins = 0;
         CoinsReset?.Invoke();
     }

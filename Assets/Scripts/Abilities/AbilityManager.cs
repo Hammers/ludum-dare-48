@@ -25,9 +25,9 @@ public class AbilityManager : MonoBehaviour
 
     // Update is called once per frame
     public void Update(){
-        if(Input.GetButtonUp("Fire1"))
+        if(Input.GetButtonUp("Fire1") && availableAbilities.Contains(leftClickAbility))
             leftClickAbility?.Trigger(player);
-        else if(Input.GetButtonUp("Fire2"))
+        else if(Input.GetButtonUp("Fire2") && availableAbilities.Contains(rightClickAbility))
             rightClickAbility?.Trigger(player);
     }
 
