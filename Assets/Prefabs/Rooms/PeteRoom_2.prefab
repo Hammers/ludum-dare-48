@@ -5860,7 +5860,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1772732816951416116, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
       propertyPath: _direction
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4195353012587396815, guid: a86ef18067a764ea7b06ba1c2ed6e4bb, type: 3}
       propertyPath: m_RootOrder

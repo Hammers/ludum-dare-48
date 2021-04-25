@@ -175,13 +175,14 @@ public class MapGenerator : MonoBehaviour
     public void AddRandomRoom(Vector2Int currentPos, Direction direction)
     {
         var newPos = currentPos + DirToV2(direction);
+        Room currentRoom = GetRoomAtCellPos(currentPos);
         Debug.Log($"Attempting to spawn at cell pos {newPos}");
         List<Room> potentialRooms = new List<Room>(_roomPrefabs);
         Room selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
         potentialRooms.Remove(selectedRoom);
         Vector2Int spawnPos;
         bool addedSafetyRooms = false;
-        while (!CanAddRoomToMap(selectedRoom, newPos, direction, out spawnPos) )
+        while ((!addedSafetyRooms && selectedRoom.name == currentRoom.name) || !CanAddRoomToMap(selectedRoom, newPos, direction, out spawnPos) )
         {
             if (potentialRooms.Count == 0)
             {
@@ -201,6 +202,7 @@ public class MapGenerator : MonoBehaviour
         }
         Debug.Log($"--Spawning {selectedRoom.name} at {spawnPos}");
         var spawnedRoom = Instantiate(selectedRoom, transform);
+        spawnedRoom.name = selectedRoom.name;
         spawnedRoom.transform.position = new Vector3(spawnPos.x * _roomWorldSizeX, spawnPos.y * _roomWorldSizeY);
         AddRoomToMap(spawnedRoom,spawnPos);
     }
