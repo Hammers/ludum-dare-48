@@ -7,8 +7,13 @@ public class CoinDisplay : MonoBehaviour
     public TextMeshProUGUI _amountText;
     public TextMeshProUGUI _additionalText;
 
+    public AudioClip audioClip;
+    private AudioSource audioSource;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         var characterInventory = FindObjectOfType<CharacterInventory>();
         characterInventory.CoinsCollected += OnCoinsCollected;
         _amountText.text = "0";
@@ -17,6 +22,8 @@ public class CoinDisplay : MonoBehaviour
 
     private void OnCoinsCollected(int prev, int cur)
     {
+        audioSource.PlayOneShot(audioClip);
+
         _additionalText.text = $"+{cur - prev}";
         _additionalText.alpha = 1f;
         _additionalText.rectTransform.anchoredPosition = new Vector2(-380f,_additionalText.rectTransform.anchoredPosition.y);
