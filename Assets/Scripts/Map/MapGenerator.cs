@@ -62,6 +62,7 @@ public class MapGenerator : MonoBehaviour
     
     private bool CanAddRoomToMap(Room room, Vector2Int pos, Direction dir, out Vector2Int chosenSpawnCell)
     {
+        Debug.Log($"--Checking {room.name}- spawn: {pos}, dir: {dir.ToString()} ");
         List<IDoor> allDoors = room.Doors;
         List<IDoor> oppositeDoors = allDoors.FindAll(x => x.Direction == OppositeDirection(dir));
         if (oppositeDoors.Count == 0)
@@ -71,10 +72,12 @@ public class MapGenerator : MonoBehaviour
         }
 
         oppositeDoors.Shuffle();
-        foreach (var door in room.Doors)
-        {
+        foreach (var door in oppositeDoors)
+        {   
+
             bool collides = false;
             Vector2Int doorCellPos = GetCellPosFromWorldPos(door.Transform.localPosition);
+            Debug.Log($"----Checking door at local cell{doorCellPos} ");
             Vector2Int bottomPos = pos - doorCellPos;
             for (int x = bottomPos.x; x < bottomPos.x + room.Width; x++)
             {
@@ -83,6 +86,7 @@ public class MapGenerator : MonoBehaviour
                     var cell = new Vector2Int(x, y);
                     if (_rooms.ContainsKey(cell))
                     {
+                        Debug.Log($"----Collided at {cell}");
                         collides = true;
                     }
                 }
@@ -90,6 +94,7 @@ public class MapGenerator : MonoBehaviour
 
             if (!collides)
             {
+                Debug.Log($"----No Collisions!");
                 chosenSpawnCell = bottomPos;
                 return true;
             }
@@ -106,6 +111,7 @@ public class MapGenerator : MonoBehaviour
             for (int y = pos.y; y < pos.y + room.Height; y++)
             {
                 var cell = new Vector2Int(x, y);
+                Debug.Log($"--Adding {room.name} at {cell}");
 
                 _rooms.Add(cell, room);
             }
@@ -115,6 +121,7 @@ public class MapGenerator : MonoBehaviour
     public void AddRandomRoom(Vector2Int currentPos, Direction direction)
     {
         var newPos = currentPos + DirToV2(direction);
+        Debug.Log($"Attempting to spawn at cell pos {newPos}");
         List<Room> potentialRooms = new List<Room>(_roomPrefabs);
         Room selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
         potentialRooms.Remove(selectedRoom);
@@ -124,6 +131,7 @@ public class MapGenerator : MonoBehaviour
             selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
             potentialRooms.Remove(selectedRoom);
         }
+        Debug.Log($"--Spawning {selectedRoom.name} at {spawnPos}");
         var spawnedRoom = Instantiate(selectedRoom, transform);
         spawnedRoom.transform.position = new Vector3(spawnPos.x * _roomWorldSizeX, spawnPos.y * _roomWorldSizeY);
         AddRoomToMap(spawnedRoom,spawnPos);
