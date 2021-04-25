@@ -16,6 +16,9 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
     [SerializeField] private InteractionBar _interactionBar;
     [SerializeField] private int _coins;
 
+    public AudioClip audioClip;
+    private AudioSource audioSource;
+
     public int Coins
     {
         get => _coins;
@@ -28,10 +31,12 @@ public class Terminal : MonoBehaviour, IPointerClickHandler
     public void Start()
     {
         _interactionBar.gameObject.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Interact()
     {
+        audioSource.PlayOneShot(audioClip, 1.0f);
         StartCoroutine(InteractCo());
     }
 
