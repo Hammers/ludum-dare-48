@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c2e05d9f097184fa6db409f9f2c133, type: 3}
   m_Name: Invisibility
   m_EditorClassIdentifier: 
+  previous: {fileID: 0}
+  abilityName: Stealth Cloak
+  abilityDesc: 'Become invisible for a short time. \n Duration: 2s, Cooldown: 15s'
+  cost: 30
   icon: {fileID: 0}
-  cost: 0
+  cooldown: 15
+  unlimitedUses: 1
+  startingUses: 5

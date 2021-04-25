@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Ability/Dart")]
-public class AbilityDart : Ability
+public class AbilityDart : ActiveAbility
 {
     [SerializeField] private GameObject dartPrefab;
     private const float SPAWN_DISTANCE = 1f;

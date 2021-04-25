@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [CreateAssetMenu(menuName = "Ability/SingleEMP")]
-public class AbilityEMP : Ability
+public class AbilityEMP : ActiveAbility
 {
     [SerializeField] private float disabledTime;
     public override void Trigger(Transform target)

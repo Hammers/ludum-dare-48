@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fff92cb9780cb84cb489f85c826cd72, type: 3}
-  m_Name: Dart EMP
+  m_Name: Dart EMPLevel2
   m_EditorClassIdentifier: 
-  previous: {fileID: 0}
-  abilityName: Shock Dart
-  abilityDesc: Shoots a dart which will temporarily knock out an enemy \n Shots:1
+  previous: {fileID: 11400000, guid: 74927e919253c9d47addd509dd776438, type: 2}
+  abilityName: Shock Dart (Level 2)
+  abilityDesc: 'Shoots a dart which will temporarily knock out an enemy. \n Shots:
+    2'
   cost: 10
   icon: {fileID: 0}
-  cooldown: 1
+  cooldown: 2
   unlimitedUses: 0
   startingUses: 1
   dartPrefab: {fileID: 7310048965262898362, guid: 57f68c9c6763ca041a23da14f47addac, type: 3}

@@ -1,13 +1,22 @@
+using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Ability/Invisibility")]
-public class AbilityInvisibility : Ability
+public class AbilityInvisibility : ActiveAbility
 {
     public override void Trigger(Transform target)
     {
+        AbilityManager.instance.RunCoroutine(Perform(target));
+    }
+
+    private IEnumerator Perform(Transform target)
+    {
         var detectableSpot = target.transform.Find("DetectableSpot").GetComponent<Collider2D>();
-        detectableSpot.enabled = !detectableSpot.enabled;
         var playerSprite = target.transform.Find("Sprite").GetComponent<SpriteRenderer>();
-        playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, detectableSpot.enabled ? 1f : 0.5f);
+        detectableSpot.enabled = false;
+        playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0.5f);
+        yield return new WaitForSeconds(2f);
+        detectableSpot.enabled = true;
+        playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1f);
     }
 }

@@ -291,10 +291,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiPrefab: {fileID: 8388919259959264803, guid: cbdb68e2ebdc8b74a812625f7609a50b, type: 3}
-  availableItems:
-  - {fileID: 11400000, guid: 9295a0673505dd24ca73c5abe30fab50, type: 2}
-  - {fileID: 11400000, guid: b670e338c98915746b153fbf098e765c, type: 2}
-  ownedItems: []
+  availableAbilities:
+  - {fileID: 11400000, guid: 34d2d0c06dd84c64ca45ea39180287bb, type: 2}
+  - {fileID: 11400000, guid: 74927e919253c9d47addd509dd776438, type: 2}
+  - {fileID: 11400000, guid: 6b1b89611e96b8c428361e607bb8d928, type: 2}
+  ownedAbilities: []
 --- !u!1 &2668903831248966186
 GameObject:
   m_ObjectHideFlags: 0

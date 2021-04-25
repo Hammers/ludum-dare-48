@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DartBehaviour : MonoBehaviour
 {
-    [SerializeField] private Ability abilityToTrigger;
+    [SerializeField] private ActiveAbility abilityToTrigger;
     [SerializeField] private float speed;
 
     void Update()

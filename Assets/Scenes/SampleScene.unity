@@ -152,8 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80725105dc2c9d428dbb9ebe35e8204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftClickAbility: {fileID: 0}
-  rightClickAbility: {fileID: 0}
 --- !u!4 &149347446
 Transform:
   m_ObjectHideFlags: 0
@@ -716,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15e518e87c53b843bd1a7ae666290c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 0
+  coins: 100
 --- !u!4 &1749277562
 Transform:
   m_ObjectHideFlags: 0

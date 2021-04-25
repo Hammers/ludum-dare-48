@@ -11,10 +11,10 @@ public class ShopItemUI : MonoBehaviour
     [SerializeField] private Image iconImage;
     [SerializeField] private TMP_Text itemLabel;
 
-    private ShopItem shopItem;
-    public void Setup(ShopItem shopItem, Action callback)
+    private Ability ability;
+    public void Setup(Ability ability, Action callback)
     {
         button.onClick.AddListener(() => callback());
-        itemLabel.text = shopItem.itemName;
+        itemLabel.text = ability.abilityName;
     }
 }
