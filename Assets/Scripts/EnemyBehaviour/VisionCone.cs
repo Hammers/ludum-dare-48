@@ -10,7 +10,7 @@ public class VisionCone : MonoBehaviour
     private Mesh coneMesh;
     private MeshRenderer mRenderer;
 
-    private const int RAY_COUNT = 20;
+    private const int RAY_COUNT = 50;
     private float totalAngle;
     private float angleStep;
     
@@ -48,7 +48,7 @@ public class VisionCone : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        bool seenPlayer = false;
+        int raysTouchingPlayer = 0;
         var origin = vision.transform.position;
         float angle = GetAngleFromVectorFloat(vision.transform.up)+(totalAngle/2);
 
@@ -70,7 +70,7 @@ public class VisionCone : MonoBehaviour
             {
                 // Check if this is the player and set seen to true if so
                 if(raycastHit2D.collider.tag == "Player")
-                    seenPlayer = true;
+                    raysTouchingPlayer++;
 
                 vertext = raycastHit2D.point;
             }
@@ -90,7 +90,7 @@ public class VisionCone : MonoBehaviour
         coneMesh.uv = uvs;
         coneMesh.triangles = triangles;
         
-        var currentState = vision.ResolveSeenState(seenPlayer, Time.deltaTime);
+        var currentState = vision.ResolveSeenState(raysTouchingPlayer >= 1, Time.deltaTime);
         if(lastState != currentState){
             switch(currentState){
                 case Vision.VisionState.Normal:

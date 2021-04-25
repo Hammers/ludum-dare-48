@@ -930,6 +930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 0
+  delay: 1
 --- !u!1 &4135007120975598370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 0
+  delay: 1
 --- !u!1 &8361161271452162410
 GameObject:
   m_ObjectHideFlags: 0

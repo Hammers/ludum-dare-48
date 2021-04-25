@@ -21,7 +21,7 @@ public class Patrolling : MonoBehaviour
     [SerializeField] private float searchSpeedModifier = 1.5f;
     private Vector3 startRot;
     private Vector3 targetRot;
-    private float rotProgress;
+    private float rotProgress = 0f;
     private Transform huntTarget;
     private float delayTimer;
 
@@ -30,9 +30,11 @@ public class Patrolling : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Start...");
         rb = GetComponent<Rigidbody2D>();
         targetPatrolPoint = patrolPoints[targetPatrolPointIndex];
         state = PatrolState.Turning;
+        PrepareToTurn();
     }
 
     private void GetNextTarget()
@@ -44,6 +46,11 @@ public class Patrolling : MonoBehaviour
         
         Debug.Log("Now turning to next target...");
         state = PatrolState.Turning;
+        PrepareToTurn();
+    }
+
+    private void PrepareToTurn()
+    {
         startRot = transform.up;
         targetRot = (new Vector3(targetPatrolPoint.transform.position.x, targetPatrolPoint.transform.position.y, 0f) - transform.position).normalized;
         rotProgress = 0f;
@@ -58,7 +65,6 @@ public class Patrolling : MonoBehaviour
         rotProgress += progressStep;
         if(rotProgress >= 1f){
             if (targetPatrolPoint.pointType == PatrolPoint.PointType.Move){
-                Debug.Log("Now moving to target...");
                 transform.up = targetRot;
                 state = PatrolState.Moving;
             }
@@ -66,8 +72,10 @@ public class Patrolling : MonoBehaviour
                 state = PatrolState.None;
             }
         }
-        else
+        else{
+
             transform.up = Vector3.Slerp(startRot, targetRot, rotProgress);
+        }
     }
     private void TurnToHuntTarget()
     {
