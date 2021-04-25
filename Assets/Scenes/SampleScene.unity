@@ -293,8 +293,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b8f78f7d7eb4c168d84e4bae79f09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _terminalPrefab: {fileID: 2668903829885046144, guid: 135aebaa84c7d4931bfb18141563433c, type: 3}
   _roomWorldSizeX: 10
   _roomWorldSizeY: 10
+  _distanceTreasureMultiplier: 1.5
+  _maxRoomsWithoutTreasure: 3
   _startRoom: {fileID: 2822383239949705675, guid: 245367d6e0c010f448558736861508bc, type: 3}
   _roomPrefabs:
   - {fileID: 2822383239949705675, guid: 5d0884ac566d04e8d8639926b409f7a0, type: 3}

@@ -16,15 +16,18 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance => _instance;
     private static MapGenerator _instance;
-    
-    
+
+    [SerializeField] private Terminal _terminalPrefab;
     [SerializeField] float _roomWorldSizeX = 1;
     [SerializeField] float _roomWorldSizeY = 1;
+    [SerializeField] private float _distanceTreasureMultiplier = 1.5f;
+    [SerializeField] private int _maxRoomsWithoutTreasure = 5;
     [SerializeField] private Room _startRoom;
     [SerializeField] private List<Room> _roomPrefabs;
     [SerializeField] private List<Room> _safetyRoomPrefabs;
     private Dictionary<Vector2Int, Room> _rooms = new Dictionary<Vector2Int, Room>();
-
+    private int _roomsWithoutTreasure = 0;
+    
     void Awake()
     {
         if (_instance != null)
@@ -178,12 +181,17 @@ public class MapGenerator : MonoBehaviour
         Room currentRoom = GetRoomAtCellPos(currentPos);
         Debug.Log($"Attempting to spawn at cell pos {newPos}");
         List<Room> potentialRooms = new List<Room>(_roomPrefabs);
-        Room selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
-        potentialRooms.Remove(selectedRoom);
+        Room selectedRoom = null;
         Vector2Int spawnPos;
         bool addedSafetyRooms = false;
-        while ((!addedSafetyRooms && selectedRoom.name == currentRoom.name) || !CanAddRoomToMap(selectedRoom, newPos, direction, out spawnPos) )
+        bool requireTreaureRoom = _roomsWithoutTreasure == _maxRoomsWithoutTreasure;
+        if (requireTreaureRoom)
         {
+            Debug.Log("Forcing treasure room");
+        }
+        while (true)
+        {
+            //Add the safety rooms to the ppol if we ran out of regular rooms
             if (potentialRooms.Count == 0)
             {
                 if (!addedSafetyRooms)
@@ -197,13 +205,58 @@ public class MapGenerator : MonoBehaviour
                     return;   
                 }
             }
+            // Select a new room
             selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
             potentialRooms.Remove(selectedRoom);
+            
+            //IS this room the same as the last?
+            if (!addedSafetyRooms && selectedRoom.name == currentRoom.name)
+            {
+                continue;
+            }
+
+            // Do we need a treasure room?
+            if (!addedSafetyRooms && requireTreaureRoom && selectedRoom.Terminals.Count == 0)
+            {
+                continue;
+            }
+            
+            // Does this room fit in the map?
+            if (!CanAddRoomToMap(selectedRoom, newPos, direction, out spawnPos))
+            {
+                continue;
+            }
+
+            // This room is good! Stop searching
+            break;
         }
         Debug.Log($"--Spawning {selectedRoom.name} at {spawnPos}");
         var spawnedRoom = Instantiate(selectedRoom, transform);
         spawnedRoom.name = selectedRoom.name;
         spawnedRoom.transform.position = new Vector3(spawnPos.x * _roomWorldSizeX, spawnPos.y * _roomWorldSizeY);
+        List<Terminal> terminals = spawnedRoom.Terminals;
+        if (addedSafetyRooms && requireTreaureRoom)
+        {
+            Terminal terminal = Instantiate(_terminalPrefab);
+            terminal.transform.position =
+                spawnedRoom.transform.position + new Vector3(_roomWorldSizeX / 2, _roomWorldSizeY / 2);
+            terminals.Add(terminal);
+        }
+        foreach (var terminal in terminals)
+        {
+            int newcoins = Mathf.RoundToInt(terminal.Coins * (newPos.x + newPos.y * _distanceTreasureMultiplier));
+            Debug.Log($"Setting terminal coins to {newcoins}");
+            terminal.Coins = newcoins;
+        }
+
+        if (terminals.Count == 0)
+        {
+            _roomsWithoutTreasure++;
+        }
+        else
+        {
+            _roomsWithoutTreasure = 0;
+        }
         AddRoomToMap(spawnedRoom,spawnPos);
     }
 
