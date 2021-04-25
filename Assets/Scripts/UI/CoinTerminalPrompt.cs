@@ -14,6 +14,8 @@ public class CoinTerminalPrompt : MonoBehaviour
      private void Start()
      {
           _canvasGroup.alpha = 0f;
+          _canvasGroup.interactable = false;
+          _canvasGroup.blocksRaycasts = false;
      }
      
      private void OnEnable()
@@ -28,6 +30,9 @@ public class CoinTerminalPrompt : MonoBehaviour
      
      private void OnTerminalActivated(CoinTerminal terminal)
      {
+          _canvasGroup.interactable = true;
+          _canvasGroup.blocksRaycasts = true;
+          _canvasGroup.alpha = 0f;
           _currentTerminal = terminal;
           _canvasGroup.DOFade(1f, 0.3f);
           _coinText.text = terminal.Coins.ToString();
@@ -35,14 +40,22 @@ public class CoinTerminalPrompt : MonoBehaviour
 
      public void Cancel()
      {
-          _canvasGroup.DOFade(0f, 0.3f);
+          _canvasGroup.DOFade(0f, 0.3f).onComplete = () =>
+          {
+               _canvasGroup.interactable = false;
+               _canvasGroup.blocksRaycasts = false;
+          };
           _currentTerminal.CancelActivation();
      }
      
      
      public void Accept()
      {
-          _canvasGroup.DOFade(0f, 0.3f);
+          _canvasGroup.DOFade(0f, 0.3f).onComplete = () => 
+          {
+               _canvasGroup.interactable = false;
+               _canvasGroup.blocksRaycasts = false;
+          };
           _currentTerminal.AcceptActivation();
      }
 }

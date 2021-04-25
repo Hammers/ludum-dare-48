@@ -10,6 +10,8 @@
         private void Start()
         {
             _canvasGroup.alpha = 0f;
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = false;
             _characterDeath = FindObjectOfType<CharacterDeath>();
             _characterDeath.Died += OnDeath;
         }
@@ -27,10 +29,14 @@
         private void OnNewSession()
         {
             _canvasGroup.alpha = 0f;
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = false;
         }
 
         private void OnDeath()
         {
+            _canvasGroup.interactable = true;
+            _canvasGroup.blocksRaycasts = true;
             _canvasGroup.DOFade(1f, 0.5f);
         }
 
