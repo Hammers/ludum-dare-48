@@ -34,12 +34,21 @@ public class Terminal : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    public void Reset()
+    {
+        _spriteRenderer.sprite = _activeSprite;
+        _used = false;
+        _spriteRenderer.color = Color.white;
+    }
+    
     public void Interact()
     {
         audioSource.PlayOneShot(audioClip, 1.0f);
         StartCoroutine(InteractCo());
     }
 
+    
+    
     public IEnumerator InteractCo()
     {
         _spriteRenderer.color = Color.white;
@@ -53,6 +62,7 @@ public class Terminal : MonoBehaviour
         _characterInRange.RegainControl();
         _characterInRange.ExitInteractionZone();
         _characterInRange = null;
+        GameManager.Instance.AddUsedTerminal(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

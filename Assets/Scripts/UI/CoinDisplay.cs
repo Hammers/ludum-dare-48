@@ -16,8 +16,14 @@ public class CoinDisplay : MonoBehaviour
 
         var characterInventory = FindObjectOfType<CharacterInventory>();
         characterInventory.CoinsCollected += OnCoinsCollected;
+        characterInventory.CoinsReset += OnCoinsReset;
         _amountText.text = "0";
         _additionalText.alpha = 0f;
+    }
+
+    private void OnCoinsReset()
+    {
+        _amountText.text = "0";
     }
 
     private void OnCoinsCollected(int prev, int cur)

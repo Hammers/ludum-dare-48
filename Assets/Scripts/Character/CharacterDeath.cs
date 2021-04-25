@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class CharacterDeath : MonoBehaviour
 {
-    [SerializeField] private GameObject deathScreenPrefab;
+    public event Action Died;
+    
     // Start is called before the first frame update
-
     private Transform mainCanvas;
 
     void Start()
@@ -16,15 +17,14 @@ public class CharacterDeath : MonoBehaviour
     }
     public void Trigger()
     {
-        Time.timeScale = 0f;
+        GetComponent<CharacterMovement>().enabled = false;
         GetComponent<CharacterRotation>().enabled = false;
         StartCoroutine(DeathSequence());
     }
 
     private IEnumerator DeathSequence()
     {
-        var deathScreen = GameObject.Instantiate(deathScreenPrefab, mainCanvas);
-        yield return new WaitForSecondsRealtime(2f);
-        SceneManager.LoadScene("TitleScene");
+        Died?.Invoke();
+        yield break;
     }
 }
