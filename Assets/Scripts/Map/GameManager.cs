@@ -10,7 +10,7 @@
         private static GameManager _instance;
         public static GameManager Instance => _instance;
 
-        private List<CoinTerminal> _terminalsActivatedThisSession = new List<CoinTerminal>();
+        private List<Terminal> _terminalsActivatedThisSession = new List<Terminal>();
         
         
         public void Awake()
@@ -39,7 +39,7 @@
             CoinTerminalActivated?.Invoke(terminal);
         }
         
-        public void AddUsedTerminal(CoinTerminal terminal)
+        public void AddUsedTerminal(Terminal terminal)
         {
             _terminalsActivatedThisSession.Add(terminal);
         }

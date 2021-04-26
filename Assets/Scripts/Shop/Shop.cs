@@ -69,7 +69,9 @@ public class Shop : MonoBehaviour
         }
         // Move the contents of this slot to the slot where this ability already is.
         if(slotToSwap != slot){
-            AbilityManager.instance.AddAbility(slotToSwap, equippedAbilities[slot]);
+            if(equippedAbilities.ContainsKey(slot))
+                AbilityManager.instance.AddAbility(slotToSwap, equippedAbilities[slot]);
+            else AbilityManager.instance.AddAbility(slotToSwap, null);
         }
 
         Ability abilityToAdd = ownedAbilities.FirstOrDefault(x => x.IsUpgradeOf(ability));

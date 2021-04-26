@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previous: {fileID: 0}
   abilityName: Shock Dart
-  abilityDesc: Shoots a dart which will temporarily knock out an enemy \n Shots:1
+  abilityDesc: Shoots a dart which will temporarily knock out an enemy<br>Shots:1
   cost: 10
   icon: {fileID: 0}
   cooldown: 1

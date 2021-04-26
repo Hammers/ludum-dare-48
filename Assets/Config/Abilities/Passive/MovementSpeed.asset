@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c2e05d9f097184fa6db409f9f2c133, type: 3}
-  m_Name: Invisibility
+  m_Script: {fileID: 11500000, guid: 132d7b420c306dc48bdbc2bdad627e6e, type: 3}
+  m_Name: MovementSpeed
   m_EditorClassIdentifier: 
   previous: {fileID: 0}
-  abilityName: Stealth Cloak
-  abilityDesc: 'Become invisible for a short time. \n Duration: 2s, Cooldown: 15s'
-  cost: 30
+  abilityName: Boosted Fans
+  abilityDesc: Move 10% faster
+  cost: 20
   icon: {fileID: 0}
-  cooldown: 15
-  unlimitedUses: 1
-  startingUses: 5
+  modifierType: 1
+  amount: 1.1

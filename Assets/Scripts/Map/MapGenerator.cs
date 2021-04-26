@@ -18,7 +18,8 @@ public class MapGenerator : MonoBehaviour
     public static MapGenerator Instance => _instance;
     private static MapGenerator _instance;
 
-    [SerializeField] private Terminal _terminalPrefab;
+    [SerializeField] private Terminal _coinTerminalPrefab;
+    [SerializeField] private Terminal _refreshTerminalPrefab;
     [SerializeField] float _roomWorldSizeX = 1;
     [SerializeField] float _roomWorldSizeY = 1;
     [SerializeField] private float _distanceTreasureMultiplier = 1.5f;
@@ -236,12 +237,23 @@ public class MapGenerator : MonoBehaviour
         spawnedRoom.name = selectedRoom.name;
         spawnedRoom.transform.position = new Vector3(spawnPos.x * _roomWorldSizeX, spawnPos.y * _roomWorldSizeY);
         List<Terminal> terminals = spawnedRoom.Terminals;
-        if (addedSafetyRooms && requireTreaureRoom)
+        if (addedSafetyRooms)
         {
-            Terminal terminal = Instantiate(_terminalPrefab);
-            terminal.transform.position =
-                spawnedRoom.transform.position + new Vector3(_roomWorldSizeX / 2, _roomWorldSizeY / 2);
-            terminals.Add(terminal);
+            if(requireTreaureRoom){
+                Terminal terminal = Instantiate(_coinTerminalPrefab);
+                terminals.Add(terminal);
+                terminal.transform.position =
+                    spawnedRoom.transform.position + new Vector3(_roomWorldSizeX / 2, _roomWorldSizeY / 2);
+            }
+            else{
+                float roll = Random.Range(0f, 100f);
+                if(roll > 50f)
+                {
+                    Terminal terminal = Instantiate(_refreshTerminalPrefab);
+                    terminal.transform.position =
+                        spawnedRoom.transform.position + new Vector3(_roomWorldSizeX / 2, _roomWorldSizeY / 2);
+                }
+            }
         }
         foreach (var terminal in terminals.Where(x => x is CoinTerminal).Cast<CoinTerminal>())
         {

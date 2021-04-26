@@ -33,6 +33,7 @@ public class Character : MonoBehaviour
         _characterMovement.enabled = false;
         _characterRotation.enabled = false;
         _rb.isKinematic = true;
+        AbilityManager.instance.SetEnabled(false);
     }
 
     public void ForceToPosition(Vector2 pos, float angle, Action onComplete,float duration = 0.5f)
@@ -49,5 +50,6 @@ public class Character : MonoBehaviour
         _characterMovement.enabled = true;
         _characterRotation.enabled = true;
         _rb.isKinematic = false;
+        AbilityManager.instance.SetEnabled(true);
     }
 }

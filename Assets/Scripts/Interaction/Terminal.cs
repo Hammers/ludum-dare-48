@@ -17,6 +17,7 @@ public class Terminal : MonoBehaviour
 
     public AudioClip audioClip;
     private AudioSource audioSource;
+    private Color originalColour;
 
     private Character _characterInRange;
 
@@ -25,6 +26,7 @@ public class Terminal : MonoBehaviour
     private bool _using;
     public void Start()
     {
+        originalColour = _spriteRenderer.color;
         _interactionBar.gameObject.SetActive(false);
         audioSource = GetComponent<AudioSource>();
     }
@@ -49,7 +51,7 @@ public class Terminal : MonoBehaviour
     
     public IEnumerator InteractCo()
     {
-        _spriteRenderer.color = Color.white;
+        _spriteRenderer.color = originalColour;
         _interactionBar.gameObject.SetActive(true);
         _interactionBar._fillImage.fillAmount = 0;
         _interactionBar._fillImage.DOFillAmount(1f, interactionTime).SetEase(Ease.Linear);
@@ -95,7 +97,7 @@ public class Terminal : MonoBehaviour
         {
             character.ExitInteractionZone();
             _characterInRange = null;
-            _spriteRenderer.color = Color.white;
+            _spriteRenderer.color = originalColour;
         }
     }
 

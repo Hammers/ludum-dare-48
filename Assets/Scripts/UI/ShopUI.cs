@@ -144,11 +144,11 @@ public class ShopUI : MonoBehaviour
         foreach(Ability ability in abilitiesToShow)
         {
             if(selectedAbility == null)
-            {
-                SelectItem(ability);
-            }
-            Instantiate<ShopItemUI>(shopItemUiPrefab, shopItemParent).Setup(ability, ()=> SelectItem(ability));
+                selectedAbility = ability;
+            
+            Instantiate<ShopItemUI>(shopItemUiPrefab, shopItemParent).Setup(selectedAbility == ability, ability, ()=> SelectItem(ability));
         }
+        SelectItem(selectedAbility);
     }
 
     private void RefreshUI()
@@ -207,11 +207,9 @@ public class ShopUI : MonoBehaviour
     private void TrySelectItem()
     {
         slotSelected = false;
+        RefreshUI();
         if(!equippedAbilities.ContainsKey(currentSlot) || equippedAbilities[currentSlot] != selectedAbility){
             setCallback(currentSlot, selectedAbility);
-        }
-        else{
-            RefreshUI();
         }
     }
 }

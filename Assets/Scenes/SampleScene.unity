@@ -288,7 +288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b8f78f7d7eb4c168d84e4bae79f09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _terminalPrefab: {fileID: 269745340627300375, guid: 135aebaa84c7d4931bfb18141563433c, type: 3}
+  _coinTerminalPrefab: {fileID: 269745340627300375, guid: 135aebaa84c7d4931bfb18141563433c, type: 3}
+  _refreshTerminalPrefab: {fileID: 7514270903718603005, guid: d8c93380ea7ec5e46a96cfd783214f62, type: 3}
   _roomWorldSizeX: 10
   _roomWorldSizeY: 10
   _distanceTreasureMultiplier: 1.5
@@ -736,6 +737,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1537926695, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.665283
+      objectReference: {fileID: 0}
     - target: {fileID: 4560677028558648234, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
       propertyPath: m_Pivot.x
       value: 0

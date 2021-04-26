@@ -12,9 +12,15 @@ public class ShopItemUI : MonoBehaviour
     [SerializeField] private TMP_Text itemLabel;
 
     private Ability ability;
-    public void Setup(Ability ability, Action callback)
+    public void Setup(bool selected, Ability ability, Action callback)
     {
-        button.onClick.AddListener(() => callback());
+        if(selected)
+            button.Select();
+
+        button.onClick.AddListener(() => {
+            button.Select();
+            callback();
+        });
         itemLabel.text = ability.abilityName;
     }
 }
