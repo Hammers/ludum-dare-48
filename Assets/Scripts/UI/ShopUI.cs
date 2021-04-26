@@ -262,7 +262,7 @@ public class ShopUI : MonoBehaviour
 
     public void OnEndGamePressed()
     {
-        if (PlayerBank.instance.coins > speedboatAmount)
+        if (PlayerBank.instance.coins >= speedboatAmount)
         {
             SceneManager.LoadScene("EndScene");
         }
