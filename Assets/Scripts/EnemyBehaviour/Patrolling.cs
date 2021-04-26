@@ -105,15 +105,16 @@ public class Patrolling : MonoBehaviour
 
     private void MoveToTarget()
     {
-        if(Vector3.Distance(transform.position, targetPatrolPoint.transform.position) > 0.01f)
+        float distanceToTarget = Vector3.Distance(transform.position, targetPatrolPoint.transform.position);
+        if(distanceToTarget > 0.01f)
         {
             Vector3 direction = targetPatrolPoint.transform.position - transform.position;
             direction.Normalize();
             var distance = Time.deltaTime * movementSpeed;
-
             if(IsSearchingForPlayer())
                 distance *= searchSpeedModifier;
 
+            distance = Mathf.Min(distance, distanceToTarget);
             transform.position += direction * distance;
         }
         else
