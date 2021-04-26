@@ -7,6 +7,7 @@ public abstract class Ability : ScriptableObject, IEquatable<Ability>
     public string abilityNameBase;
     public string abilityName;
     public string abilityDesc;
+    public string upgradeDesc;
     public int cost;
     public Sprite icon;
 

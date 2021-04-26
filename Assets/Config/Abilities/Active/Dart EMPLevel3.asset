@@ -17,6 +17,7 @@ MonoBehaviour:
   abilityName: Shock Dart (Mk 3)
   abilityDesc: 'Shoots a dart which will temporarily knock out an enemy.<br>Shots:
     7'
+  upgradeDesc: 'Shots: 7'
   cost: 300
   icon: {fileID: 0}
   cooldown: 1

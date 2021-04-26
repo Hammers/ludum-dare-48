@@ -34,7 +34,9 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private Transform shopItemParent;
 
     [SerializeField] private TMP_Text itemNameLabel;
+    [SerializeField] private TMP_Text itemLevelLabel;
     [SerializeField] private TMP_Text itemDescLabel;
+    [SerializeField] private TMP_Text itemUpgradeLabel;
     [SerializeField] private TMP_Text costLabel;
     [SerializeField] private TMP_Text buyButtonLabel;
     [SerializeField] private TMP_Text coinsLabel;
@@ -148,7 +150,7 @@ public class ShopUI : MonoBehaviour
         if(selectedAbility != null && !abilitiesToShow.Contains(selectedAbility))
             selectedAbility = abilitiesToShow.FirstOrDefault(x => x.IsUpgradeOf(selectedAbility));
 
-        foreach(Ability ability in abilitiesToShow)
+        foreach(Ability ability in abilitiesToShow.OrderBy(x => x.abilityNameBase))
         {
             if(selectedAbility == null)
                 selectedAbility = ability;
@@ -184,16 +186,44 @@ public class ShopUI : MonoBehaviour
 
     private void SelectItem(Ability ability)
     {
+        int upgradeDepth = 0;
+        Ability currAbility = ability;
+        while(currAbility != null)
+        {
+            currAbility = currAbility.previous;
+            upgradeDepth++;
+        }
+
         selectedAbility = ability;
-        itemNameLabel.text = ability.abilityName;
-        itemDescLabel.text = ability.abilityDesc;
+        itemNameLabel.text = ability.abilityNameBase;
         costLabel.text = "COST: "+ability.cost.ToString();
+        if(upgradeDepth == 1){
+            itemLevelLabel.gameObject.SetActive(false);
+        }
+        else{
+            itemLevelLabel.gameObject.SetActive(true);
+            itemLevelLabel.text = "Level " + (upgradeDepth-1);
+        }
 
         if(ownedAbilities.Contains(ability)){
+            itemDescLabel.text = ability.abilityDesc;
+            itemUpgradeLabel.gameObject.SetActive(false);
+            costLabel.gameObject.SetActive(false);
             buyButton.gameObject.SetActive(false);
         }
         else
         {
+            if(ability.previous != null){
+                itemDescLabel.text = ability.previous.abilityDesc;
+                itemUpgradeLabel.text = "Level " + upgradeDepth + "<br>" + ability.upgradeDesc;
+                itemUpgradeLabel.gameObject.SetActive(true);
+            }
+            else
+            {
+                itemDescLabel.text = ability.abilityDesc;
+                itemUpgradeLabel.gameObject.SetActive(false);
+            }
+            costLabel.gameObject.SetActive(false);
             buyButton.gameObject.SetActive(true);
             buyButtonLabel.text = ability.previous == null ? "BUY" : "UPGRADE";
             buyButton.enabled =  coins >= ability.cost;

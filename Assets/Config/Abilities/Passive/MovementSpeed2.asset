@@ -16,6 +16,7 @@ MonoBehaviour:
   abilityNameBase: Boosted Fans
   abilityName: Boosted Fans
   abilityDesc: Move 20% faster
+  upgradeDesc: Move 20% faster
   cost: 100
   icon: {fileID: 0}
   modifierType: 1

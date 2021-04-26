@@ -21,6 +21,6 @@ public class ShopItemUI : MonoBehaviour
             button.Select();
             callback();
         });
-        itemLabel.text = ability.abilityName;
+        itemLabel.text = ability.abilityNameBase;
     }
 }
