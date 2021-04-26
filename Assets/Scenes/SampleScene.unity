@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,23 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &52007640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4560677028481396159, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+  m_PrefabInstance: {fileID: 4560677029637702074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &52007642
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52007640}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &149347444
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +346,7 @@ MonoBehaviour:
   - {fileID: 2822383239949705675, guid: f004eea15d6284040b17d0c7ea51c9f8, type: 3}
   - {fileID: 2822383239949705675, guid: 2ab02d54668df43ac8552fbfcdaf14ed, type: 3}
   - {fileID: 2822383239949705675, guid: cf6be74e50ee04c348f182142a4a117b, type: 3}
+  _coinSpread: 3
 --- !u!1 &561553648
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15e518e87c53b843bd1a7ae666290c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endGameThreshold: 2000
+  endGameThreshold: 500
   coins: 0
   passedEndGameThreshold: 0
 --- !u!4 &1749277562
@@ -833,6 +851,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4560677028481396157, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: _canvasGroup
+      value: 
+      objectReference: {fileID: 52007642}
     - target: {fileID: 4560677028558648234, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
