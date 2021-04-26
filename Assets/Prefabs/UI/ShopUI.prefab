@@ -1440,7 +1440,7 @@ MonoBehaviour:
   passiveSlotLabel: {fileID: 1516067734275689905}
   endGameButton: {fileID: 3591557771385048436}
   endGameButtonText: {fileID: 6338357706080118096}
-  speedboatAmount: 10000
+  speedboatAmount: 2000
   selectAbilityPane: {fileID: 7656734329127607995}
   buyButton: {fileID: 3523082718742707104}
   doneButton: {fileID: 9067883038151855556}
