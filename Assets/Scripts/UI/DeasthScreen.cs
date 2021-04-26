@@ -1,6 +1,7 @@
     using System;
     using DG.Tweening;
     using UnityEngine;
+    using UnityEngine.UI;
 
     public class DeasthScreen : MonoBehaviour
     {
@@ -35,9 +36,11 @@
 
         private void OnDeath()
         {
-            _canvasGroup.interactable = true;
             _canvasGroup.blocksRaycasts = true;
-            _canvasGroup.DOFade(1f, 0.5f);
+            _canvasGroup.DOFade(1f, 0.5f).onKill = () =>
+            {
+                _canvasGroup.interactable = true;
+            };
         }
 
         public void PressButton()
