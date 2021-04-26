@@ -149,6 +149,8 @@ public class Patrolling : MonoBehaviour
 
     public void Hunt(Transform target)
     {
+        if(huntSpeed <= 0f)
+            return;
         Debug.Log("Hunting...");
         state = PatrolState.Hunting;
         huntTarget = target;

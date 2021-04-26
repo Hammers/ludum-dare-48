@@ -6200,9 +6200,9 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 5225014038525610435}
   - {fileID: 333843581048264444}
-  rotationSpeed: 2.5
-  huntSpeed: 5
-  searchSpeedModifier: 1.5
+  rotationSpeed: 0
+  huntSpeed: 0
+  searchSpeedModifier: 1
   movementSpeed: 4.5
 --- !u!1 &6450334268347563231
 GameObject:
@@ -6487,9 +6487,9 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 5845111705618650336}
   - {fileID: 3611481653099929048}
-  rotationSpeed: 2.5
-  huntSpeed: 5
-  searchSpeedModifier: 1.5
+  rotationSpeed: 0
+  huntSpeed: 0
+  searchSpeedModifier: 1
   movementSpeed: 4.5
 --- !u!1001 &337487962408308597
 PrefabInstance:
@@ -6505,6 +6505,10 @@ PrefabInstance:
     - target: {fileID: 1144481172159302870, guid: c46be7cc0316afd4596550c1ba01c539, type: 3}
       propertyPath: patrolPoints.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549532285450163742, guid: c46be7cc0316afd4596550c1ba01c539, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6773145890636263797, guid: c46be7cc0316afd4596550c1ba01c539, type: 3}
       propertyPath: angle
@@ -6794,6 +6798,10 @@ PrefabInstance:
     - target: {fileID: 1144481172159302870, guid: c46be7cc0316afd4596550c1ba01c539, type: 3}
       propertyPath: patrolPoints.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549532285450163742, guid: c46be7cc0316afd4596550c1ba01c539, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6773145890636263797, guid: c46be7cc0316afd4596550c1ba01c539, type: 3}
       propertyPath: angle

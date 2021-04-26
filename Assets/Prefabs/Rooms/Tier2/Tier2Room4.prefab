@@ -6200,9 +6200,9 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 5225014038525610435}
   - {fileID: 333843581048264444}
-  rotationSpeed: 2.5
-  huntSpeed: 5
-  searchSpeedModifier: 1.5
+  rotationSpeed: 0
+  huntSpeed: 0
+  searchSpeedModifier: 1
   movementSpeed: 4.5
 --- !u!1 &6450334268347563231
 GameObject:
@@ -6457,9 +6457,9 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 5845111705618650336}
   - {fileID: 3611481653099929048}
-  rotationSpeed: 2.5
-  huntSpeed: 5
-  searchSpeedModifier: 1.5
+  rotationSpeed: 0
+  huntSpeed: 0
+  searchSpeedModifier: 1
   movementSpeed: 4.5
 --- !u!1 &9170606229697320057
 GameObject:
