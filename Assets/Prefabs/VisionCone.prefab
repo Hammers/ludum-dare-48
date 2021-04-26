@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalMat: {fileID: 2100000, guid: 27da053798d8fde46a9d5cec37823565, type: 2}
-  seenMat: {fileID: 2100000, guid: 8838c2415a8071349a1eb5f3dd4cdfec, type: 2}
-  searchingMat: {fileID: 2100000, guid: 048b66150f5475d498aa5319401e3312, type: 2}
+  seenMat: {fileID: 2100000, guid: 048b66150f5475d498aa5319401e3312, type: 2}
+  searchingMat: {fileID: 2100000, guid: 8838c2415a8071349a1eb5f3dd4cdfec, type: 2}
   alertMat: {fileID: 2100000, guid: 8598d9e0b384632418e582251c84386c, type: 2}
   vision: {fileID: 0}

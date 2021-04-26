@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Vision : MonoBehaviour
@@ -10,71 +11,94 @@ public class Vision : MonoBehaviour
     }
 
     [SerializeField] private GameObject visionConePrefab;
+    [SerializeField] public float _searchTime = 10f;
+    [SerializeField] private float _alertTime = 2f;
     public float angle = 45f;
     public float distance = 1f;
     private float halfAngle;
-    private Transform target;
-    private Camera cam;
 
-    private const float SEARCH_TIME = 10f;
-    private const float ALERT_TIME = 2f;
-    private float searchingTime = 0f;
-    private float alertTime = 0f;
-
+    public float currentSearchingTime = 0f;
+    private float currentAlertTime = 0f;
+    private CharacterDeath _character;
+    private Patrolling _patrolling;
     public VisionState state = VisionState.Normal;
 
     // Start is called before the first frame update
     void Start()
     {
         halfAngle = angle * 0.5f;
-        target = GameObject.Find("PlayerCharacter").transform;
-        cam = Camera.main;
-
-        float angleRatio = angle / 360f;
+        _character = FindObjectOfType<CharacterDeath>();
+        _patrolling = GetComponent<Patrolling>();
         var cone = GameObject.Instantiate(visionConePrefab, Vector3.zero, Quaternion.identity);
         cone.GetComponent<VisionCone>().vision = this;
     }
 
+    private void OnEnable()
+    {
+        GameManager.Instance.NewSessionStarted += OnNewSession;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.NewSessionStarted -= OnNewSession;
+    }
+    
+    private void OnNewSession()
+    {
+        currentSearchingTime = 0f;
+        currentAlertTime = 0f;
+        if (_patrolling != null)
+        {
+            _patrolling.StopHunting();
+        }
+
+        state = VisionState.Normal;
+    }
+
     public VisionState ResolveSeenState(bool playerIsSeen, float deltaTime)
     {
-        Patrolling patrolScript = null;
         switch(state){
             case VisionState.Normal:
                 if (playerIsSeen){
                     state = VisionState.Seen;
-                    patrolScript = GetComponent<Patrolling>();
-                    if(patrolScript != null)
-                        patrolScript.Hunt(GameObject.Find("PlayerCharacter").transform);
+                    if(_patrolling != null)
+                        _patrolling.Hunt(_character.transform);
                 }
                 break;
             case VisionState.Seen:
                 if(playerIsSeen){
-                    alertTime += Time.deltaTime;
-                    if(alertTime >= ALERT_TIME){
-                        GameObject.Find("PlayerCharacter").GetComponent<CharacterDeath>().Trigger();
+                    currentAlertTime += Time.deltaTime;
+                    if(currentAlertTime >= _alertTime){
+                        _character.Trigger();
                         state = VisionState.Alert;
                     }
                 }
                 else{
-                    patrolScript = GetComponent<Patrolling>();
-                    if(patrolScript != null)
-                        patrolScript.StopHunting();
+                    if(_patrolling != null)
+                        _patrolling.StopHunting();
                     state = VisionState.Searching;
                 }
                 break;
             case VisionState.Searching:
                 if(playerIsSeen){
-                    searchingTime = 0f;
+                    currentSearchingTime = 0f;
                     state = VisionState.Seen;
-                    patrolScript = GetComponent<Patrolling>();
-                    if(patrolScript != null)
-                        patrolScript.Hunt(GameObject.Find("PlayerCharacter").transform);
+                    if(_patrolling != null)
+                        _patrolling.Hunt(_character.transform);
                 }
                 else
                 {
-                    searchingTime += Time.deltaTime;
-                    if(searchingTime >= SEARCH_TIME){
-                        searchingTime = 0f;
+                    if (currentAlertTime > 0f)
+                    {
+                        currentAlertTime -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        currentAlertTime = 0f;
+                    }
+                    currentSearchingTime += Time.deltaTime;
+                    if(currentSearchingTime >= _searchTime){
+                        currentSearchingTime = 0f;
                         state = VisionState.Normal;
                     }
                 }

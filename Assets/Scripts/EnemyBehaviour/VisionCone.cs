@@ -16,6 +16,7 @@ public class VisionCone : MonoBehaviour
     
     private float distance;
     private Vision.VisionState lastState = Vision.VisionState.Normal;
+    private static readonly int Tint = Shader.PropertyToID("_Tint");
 
     void Start()
     {
@@ -99,7 +100,7 @@ public class VisionCone : MonoBehaviour
         coneMesh.RecalculateBounds();
         
         var currentState = vision.ResolveSeenState(raysTouchingPlayer >= 1, Time.deltaTime);
-        if(lastState != currentState){
+        if(currentState == Vision.VisionState.Searching || lastState != currentState){
             switch(currentState){
                 case Vision.VisionState.Normal:
                     mRenderer.material = normalMat;
@@ -109,6 +110,10 @@ public class VisionCone : MonoBehaviour
                     break;
                 case Vision.VisionState.Searching:
                     mRenderer.material = searchingMat;
+                    Color col = Color.Lerp(searchingMat.color, normalMat.color,
+                        vision.currentSearchingTime / vision._searchTime);
+                    Debug.Log($"Setting col: {col}");
+                    mRenderer.material.color = col;
                     break;
                 case Vision.VisionState.Alert:
                     mRenderer.material = alertMat;

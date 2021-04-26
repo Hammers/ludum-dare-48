@@ -99,8 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visionConePrefab: {fileID: 7950322168777267906, guid: 997003627372589429859430137e3778, type: 3}
+  _searchTime: 10
+  _alertTime: 1.5
   angle: 45
   distance: 5
+  currentSearchingTime: 0
   state: 0
 --- !u!50 &1528642407446841900
 Rigidbody2D:
