@@ -54,6 +54,7 @@ public class ShopUI : MonoBehaviour
         this.ownedAbilities = ownedAbilities;
         this.purchaseCallback = purchaseCallback;
         this.setCallback = setCallback;
+        coinsLabel.text = coins.ToString();
         closeButton.onClick.AddListener(() => closeCallback());
         buyButton.onClick.AddListener(() => TryPurchaseItem());
         doneButton.onClick.AddListener(() => TrySelectItem());

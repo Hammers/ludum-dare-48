@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MovementSpeed
   m_EditorClassIdentifier: 
   previous: {fileID: 0}
+  abilityNameBase: Boosted Fans
   abilityName: Boosted Fans
   abilityDesc: Move 10% faster
   cost: 20

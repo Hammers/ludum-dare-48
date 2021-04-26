@@ -15,7 +15,7 @@ public class AbilityInvisibility : ActiveAbility
         var playerSprite = target.transform.Find("Sprite").GetComponent<SpriteRenderer>();
         detectableSpot.enabled = false;
         playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0.5f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(startingUses);
         detectableSpot.enabled = true;
         playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1f);
     }

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8c2e05d9f097184fa6db409f9f2c133, type: 3}
-  m_Name: Invisibility
+  m_Name: Invisibility3
   m_EditorClassIdentifier: 
-  previous: {fileID: 0}
+  previous: {fileID: 11400000, guid: 989d47e6b3c534247934cde6701fccc2, type: 2}
   abilityNameBase: Stealth Cloak
-  abilityName: Stealth Cloak
-  abilityDesc: 'Become invisible for a short time. <br> Duration: 2s<br> Cooldown:
+  abilityName: 'Stealth Cloak (Mk 3) '
+  abilityDesc: 'Become invisible for a short time. <br> Duration: 5s<br> Cooldown:
     15s'
-  cost: 30
+  cost: 100
   icon: {fileID: 0}
   cooldown: 15
   unlimitedUses: 1
-  startingUses: 2
+  startingUses: 4
