@@ -36,8 +36,9 @@
 
         private void OnDeath()
         {
+            _canvasGroup.alpha = 0f;
             _canvasGroup.blocksRaycasts = true;
-            _canvasGroup.DOFade(1f, 0.5f).onKill = () =>
+            _canvasGroup.DOFade(1f, 0.5f).onComplete = () =>
             {
                 _canvasGroup.interactable = true;
             };
