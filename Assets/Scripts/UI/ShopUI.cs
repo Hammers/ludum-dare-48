@@ -223,7 +223,7 @@ public class ShopUI : MonoBehaviour
                 itemDescLabel.text = ability.abilityDesc;
                 itemUpgradeLabel.gameObject.SetActive(false);
             }
-            costLabel.gameObject.SetActive(false);
+            costLabel.gameObject.SetActive(true);
             buyButton.gameObject.SetActive(true);
             buyButtonLabel.text = ability.previous == null ? "BUY" : "UPGRADE";
             buyButton.enabled =  coins >= ability.cost;
