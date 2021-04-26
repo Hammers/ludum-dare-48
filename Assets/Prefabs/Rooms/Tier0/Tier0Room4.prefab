@@ -160,7 +160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2251285331250654668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8, y: 16.5, z: 0}
+  m_LocalPosition: {x: 7.5, y: 16.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4728750768420022338}
@@ -3285,7 +3285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4267689345887948277}
   m_LocalRotation: {x: -0, y: -0, z: -1, w: -0.000000089406974}
-  m_LocalPosition: {x: 2.000001, y: 3.5000086, z: 0}
+  m_LocalPosition: {x: 2.5, y: 3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4728750768420022338}
@@ -3375,7 +3375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5209638621265459889}
   m_LocalRotation: {x: -0, y: -0, z: -1, w: -0.000000089406974}
-  m_LocalPosition: {x: 7.999999, y: 3.499999, z: 0}
+  m_LocalPosition: {x: 7.5, y: 3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4728750768420022338}
@@ -3420,7 +3420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6856094794191095687}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 16.5, z: 0}
+  m_LocalPosition: {x: 2.5, y: 16.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4728750768420022338}
@@ -3712,11 +3712,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2493086367471236719, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.999999
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 2493086367471236719, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.499999
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2493086367471236719, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3753,6 +3753,18 @@ PrefabInstance:
     - target: {fileID: 2722907104981929965, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
       propertyPath: m_Name
       value: 1x2MovingWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4850951843865077443, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386751601582664325, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386751601582664325, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8677926021863192335, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -4067,7 +4079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2493086367471236719, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2493086367471236719, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4108,6 +4120,18 @@ PrefabInstance:
     - target: {fileID: 2722907104981929965, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
       propertyPath: m_Name
       value: 1x2MovingWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4850951843865077443, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386751601582664325, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386751601582664325, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8677926021863192335, guid: ba093b8f4afcb47c7b71b18d4e34f3c4, type: 3}
       propertyPath: patrolPoints.Array.size
