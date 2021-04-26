@@ -315,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Luckly you have a handy stealth drone and know of a neaby server facility
+  m_text: Luckily you have a handy stealth drone and know of a nearby server facility
     that is ripe for the picking
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd7397344b428c54786e1057f90707be, type: 2}
