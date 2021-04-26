@@ -313,6 +313,7 @@ MonoBehaviour:
   _distanceTreasureMultiplier: 1.5
   _maxRoomsWithoutTreasure: 3
   _startRoom: {fileID: 2822383239949705675, guid: 245367d6e0c010f448558736861508bc, type: 3}
+  _testRoom: {fileID: 0}
   _roomPrefabs:
   - {fileID: 2822383239949705675, guid: 5d0884ac566d04e8d8639926b409f7a0, type: 3}
   - {fileID: 2822383239949705675, guid: 4d3304a93649f364580579f52ca3d71a, type: 3}
@@ -335,6 +336,7 @@ MonoBehaviour:
   - {fileID: 2822383239949705675, guid: edf2ea95811094822b7859a8e53b5891, type: 3}
   - {fileID: 2822383239949705675, guid: d6a3eab2ffd20450bae81b3cc007578b, type: 3}
   - {fileID: 2822383239949705675, guid: 88faa43317f15421a9b88468ce780d94, type: 3}
+  - {fileID: 2822383239949705675, guid: bda41522f3d1a4075aa0c1f649760752, type: 3}
   _safetyRoomPrefabs:
   - {fileID: 2822383239949705675, guid: 1ef72c9d3f4f8428a82aba8a850cc346, type: 3}
   - {fileID: 2822383239949705675, guid: 715333d92f3ff480985e577dc4f89574, type: 3}
