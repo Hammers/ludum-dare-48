@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField] public int tier;
     [SerializeField] private int width;
     [SerializeField] private int height;
     [SerializeField] private List<GameObject> _doors; 

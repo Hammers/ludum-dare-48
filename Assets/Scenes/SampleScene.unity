@@ -288,8 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b8f78f7d7eb4c168d84e4bae79f09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _distancePerTier: 4
   _coinTerminalPrefab: {fileID: 269745340627300375, guid: 135aebaa84c7d4931bfb18141563433c, type: 3}
-  _refreshTerminalPrefab: {fileID: 7514270903718603005, guid: d8c93380ea7ec5e46a96cfd783214f62, type: 3}
+  _refreshTerminalPrefab: {fileID: 4439923557688836506, guid: d8c93380ea7ec5e46a96cfd783214f62, type: 3}
   _roomWorldSizeX: 10
   _roomWorldSizeY: 10
   _distanceTreasureMultiplier: 1.5
@@ -304,6 +305,11 @@ MonoBehaviour:
   - {fileID: 2822383239949705675, guid: 4ebbd9be5e9a5b649afee3fe71d6e74b, type: 3}
   - {fileID: 2822383239949705675, guid: d7b9c5132f452d845acc006ed4d3ba94, type: 3}
   - {fileID: 2822383239949705675, guid: f203c909ea246204ba1f47a11c5f1e63, type: 3}
+  - {fileID: 2822383239949705675, guid: c075e73366b064533a2890fc6462a4cc, type: 3}
+  - {fileID: 2822383239949705675, guid: 989e794cf8c334e4e86763a3f142eb00, type: 3}
+  - {fileID: 2822383239949705675, guid: 8c25bc46944304f45bff4499f074a27c, type: 3}
+  - {fileID: 2822383239949705675, guid: 357f4a996d07147d78ce61f3054d43fe, type: 3}
+  - {fileID: 2822383239949705675, guid: 9280224dfa6e542aabc166596d9e4e42, type: 3}
   _safetyRoomPrefabs:
   - {fileID: 2822383239949705675, guid: 1ef72c9d3f4f8428a82aba8a850cc346, type: 3}
   - {fileID: 2822383239949705675, guid: 715333d92f3ff480985e577dc4f89574, type: 3}

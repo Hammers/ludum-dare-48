@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Ability/Invisibility")]
 public class AbilityInvisibility : ActiveAbility
 {
+    public float activeTime;
+    
     public override void Trigger(Transform target)
     {
         AbilityManager.instance.RunCoroutine(Perform(target));

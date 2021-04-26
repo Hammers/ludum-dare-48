@@ -102,7 +102,7 @@ MonoBehaviour:
   _searchTime: 10
   _alertTime: 1
   angle: 30
-  distance: 10
+  distance: 9
   currentSearchingTime: 0
   state: 0
 --- !u!50 &5549532285450163742

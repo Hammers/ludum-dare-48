@@ -27,6 +27,7 @@ public class Shop : MonoBehaviour
             return;
 
         this.closeCallback = closeCallback;
+        AbilityManager.instance.ResetUses();
         _activeUi = Instantiate<ShopUI>(_uiPrefab, uiParent);
         _activeUi.Init(AbilityManager.instance.GetEquippedAbilities(), availableAbilities, ownedAbilities, GetPlayerCoins(), PurchaseItem, SetAbility, CloseShop);
     }

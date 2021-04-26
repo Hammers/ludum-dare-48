@@ -18,6 +18,7 @@ public class MapGenerator : MonoBehaviour
     public static MapGenerator Instance => _instance;
     private static MapGenerator _instance;
 
+    [SerializeField] private int _distancePerTier = 4;
     [SerializeField] private Terminal _coinTerminalPrefab;
     [SerializeField] private Terminal _refreshTerminalPrefab;
     [SerializeField] float _roomWorldSizeX = 1;
@@ -182,7 +183,9 @@ public class MapGenerator : MonoBehaviour
         var newPos = currentPos + DirToV2(direction);
         Room currentRoom = GetRoomAtCellPos(currentPos);
         Debug.Log($"Attempting to spawn at cell pos {newPos}");
-        List<Room> potentialRooms = new List<Room>(_roomPrefabs);
+        int roomDistance = Mathf.Abs(newPos.x) + Mathf.Abs(newPos.y);
+        int tier = roomDistance / _distancePerTier;
+        List<Room> potentialRooms = new List<Room>(_roomPrefabs).FindAll(x => x.tier == tier);
         Room selectedRoom = null;
         Vector2Int spawnPos;
         bool addedSafetyRooms = false;
@@ -196,8 +199,14 @@ public class MapGenerator : MonoBehaviour
             //Add the safety rooms to the ppol if we ran out of regular rooms
             if (potentialRooms.Count == 0)
             {
-                if (!addedSafetyRooms)
+                if (tier > 0)
                 {
+                    tier--;
+                    potentialRooms.AddRange(_roomPrefabs.FindAll(x => x.tier == tier));
+                }
+                else if(tier == 0)
+                {
+                    tier--;
                     potentialRooms.AddRange(_safetyRoomPrefabs);
                     addedSafetyRooms = true;
                 }

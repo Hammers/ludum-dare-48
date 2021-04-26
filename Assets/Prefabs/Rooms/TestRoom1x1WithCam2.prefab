@@ -911,7 +911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3290675023057074417}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8, y: 1.5, z: 0}
+  m_LocalPosition: {x: 1.5, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4728750768420022338}
@@ -1457,7 +1457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6300605427140805139}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 8, z: 0}
+  m_LocalPosition: {x: 8.5, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4728750768420022338}
@@ -1488,7 +1488,7 @@ GameObject:
   - component: {fileID: 4728750768420022338}
   - component: {fileID: 2822383239949705675}
   m_Layer: 0
-  m_Name: TestRoom1x1WithCam
+  m_Name: TestRoom1x1WithCam2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2026,7 +2026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6773145890636263799, guid: c46be7cc0316afd4596550c1ba01c539, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 6773145890636263799, guid: c46be7cc0316afd4596550c1ba01c539, type: 3}
       propertyPath: m_LocalPosition.y

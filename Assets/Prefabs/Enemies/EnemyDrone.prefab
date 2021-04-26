@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visionConePrefab: {fileID: 7950322168777267906, guid: 997003627372589429859430137e3778, type: 3}
   _searchTime: 10
-  _alertTime: 1.5
+  _alertTime: 1
   angle: 45
   distance: 5
   currentSearchingTime: 0

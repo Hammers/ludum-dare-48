@@ -16,9 +16,10 @@ MonoBehaviour:
   abilityNameBase: Stealth Cloak
   abilityName: 'Stealth Cloak (Mk 3) '
   abilityDesc: 'Become invisible for a short time. <br> Duration: 5s<br> Cooldown:
-    15s'
-  cost: 100
+    15s<br>Uses: 5'
+  cost: 400
   icon: {fileID: 0}
   cooldown: 15
-  unlimitedUses: 1
-  startingUses: 4
+  unlimitedUses: 0
+  startingUses: 5
+  activeTime: 3

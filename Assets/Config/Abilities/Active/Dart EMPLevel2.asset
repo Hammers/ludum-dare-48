@@ -16,10 +16,10 @@ MonoBehaviour:
   abilityNameBase: Shock Dart
   abilityName: Shock Dart (Mk 2)
   abilityDesc: 'Shoots a dart which will temporarily knock out an enemy.<br>Shots:
-    2'
-  cost: 10
+    4'
+  cost: 100
   icon: {fileID: 0}
   cooldown: 1
   unlimitedUses: 0
-  startingUses: 2
+  startingUses: 4
   dartPrefab: {fileID: 7310048965262898362, guid: 57f68c9c6763ca041a23da14f47addac, type: 3}

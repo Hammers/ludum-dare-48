@@ -301,6 +301,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ecda209b167404d14857f3579cf3dfcd, type: 2}
   - {fileID: 11400000, guid: 2ce4ae68bece8475f9912076eae2048c, type: 2}
   - {fileID: 11400000, guid: 61e390827c5e943a989a728f4c8a21c6, type: 2}
+  - {fileID: 11400000, guid: 062e42b60075a40c69d0eb5052ce1339, type: 2}
   ownedAbilities: []
 --- !u!1 &2668903831248966186
 GameObject:
