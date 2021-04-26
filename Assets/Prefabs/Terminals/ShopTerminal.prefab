@@ -152,7 +152,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 2668903831338964931}
   _activeSprite: {fileID: 4454375367103297502, guid: b9e67e6489dc9054bb43f00f65a4b66b, type: 3}
   _inActiveSprite: {fileID: -2016170256673693227, guid: b9e67e6489dc9054bb43f00f65a4b66b, type: 3}
-  interactionTime: 3
+  interactionTime: 0.1
   interactionPoint: {fileID: 2668903831248966187}
   _interactionBar: {fileID: 5496718075656200524}
   audioClip: {fileID: 8300000, guid: 76a56a6c07e4dcb48a5445d520888b3e, type: 3}
