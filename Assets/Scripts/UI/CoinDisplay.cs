@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CoinDisplay : MonoBehaviour
 {
+    public CanvasGroup _canvasGroup;
     public TextMeshProUGUI _amountText;
     public TextMeshProUGUI _additionalText;
 
@@ -19,15 +20,21 @@ public class CoinDisplay : MonoBehaviour
         characterInventory.CoinsReset += OnCoinsReset;
         _amountText.text = "0";
         _additionalText.alpha = 0f;
+        _canvasGroup.alpha = 0f;
     }
 
     private void OnCoinsReset()
     {
         _amountText.text = "0";
+        _canvasGroup.alpha = 0f;
     }
 
     private void OnCoinsCollected(int prev, int cur)
     {
+        if (cur > 0)
+        {
+            _canvasGroup.DOFade(1f,0.1f);
+        }
         audioSource.PlayOneShot(audioClip);
 
         _additionalText.text = $"+{cur - prev}";

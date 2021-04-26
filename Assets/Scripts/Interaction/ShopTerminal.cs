@@ -10,8 +10,9 @@ public class ShopTerminal : Terminal
     
     protected override void UseTerminal()
     {
+        bool hadCoins = FindObjectOfType<CharacterInventory>().coins > 0;
         PlayerBank.instance.TransferFunds();
-        GetComponent<Shop>().OpenShop(() => {
+        GetComponent<Shop>().OpenShop(hadCoins,() => {
             EndActivation();
             Reset();
             GameManager.Instance.EndSession();

@@ -6,7 +6,7 @@ public class CharacterInventory : MonoBehaviour
     public event Action<int,int> CoinsCollected;
     public event Action CoinsReset;
     
-    [SerializeField] private int coins;
+    [SerializeField] public int coins;
 
     public void OnEnable()
     {

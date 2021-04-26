@@ -26,6 +26,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private float _distanceTreasureMultiplier = 1.5f;
     [SerializeField] private int _maxRoomsWithoutTreasure = 5;
     [SerializeField] private Room _startRoom;
+    [SerializeField] private Room _testRoom;
     [SerializeField] private List<Room> _roomPrefabs;
     [SerializeField] private List<Room> _safetyRoomPrefabs;
     [SerializeField] private int _coinSpread = 3;
@@ -190,6 +191,7 @@ public class MapGenerator : MonoBehaviour
         Room selectedRoom = null;
         Vector2Int spawnPos;
         bool addedSafetyRooms = false;
+        bool triedTestRoom = false;
         bool requireTreaureRoom = _roomsWithoutTreasure == _maxRoomsWithoutTreasure;
         if (requireTreaureRoom)
         {
@@ -197,6 +199,7 @@ public class MapGenerator : MonoBehaviour
         }
         while (true)
         {
+
             //Add the safety rooms to the ppol if we ran out of regular rooms
             if (potentialRooms.Count == 0)
             {
@@ -218,8 +221,16 @@ public class MapGenerator : MonoBehaviour
                 }
             }
             // Select a new room
-            selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
-            potentialRooms.Remove(selectedRoom);
+            if (_testRoom != null && !triedTestRoom)
+            {
+                selectedRoom = _testRoom;
+                triedTestRoom = true;
+            }
+            else
+            {
+                selectedRoom = potentialRooms[Random.Range(0, potentialRooms.Count)];
+                potentialRooms.Remove(selectedRoom);
+            }
             
             //IS this room the same as the last?
             if (!addedSafetyRooms && selectedRoom.name == currentRoom.name)

@@ -21,7 +21,7 @@ public class Shop : MonoBehaviour
     private int GetPlayerCoins(){
         return PlayerBank.instance.coins;
     }
-    public void OpenShop(Action closeCallback)
+    public void OpenShop(bool hadCoins,Action closeCallback)
     {
         if(_activeUi != null)
             return;
@@ -29,7 +29,7 @@ public class Shop : MonoBehaviour
         this.closeCallback = closeCallback;
         AbilityManager.instance.ResetUses();
         _activeUi = Instantiate<ShopUI>(_uiPrefab, uiParent);
-        _activeUi.Init(AbilityManager.instance.GetEquippedAbilities(), availableAbilities, ownedAbilities, GetPlayerCoins(), PurchaseItem, SetAbility, CloseShop);
+        _activeUi.Init(hadCoins,AbilityManager.instance.GetEquippedAbilities(), availableAbilities, ownedAbilities, GetPlayerCoins(), PurchaseItem, SetAbility, CloseShop);
     }
 
     public void CloseShop()

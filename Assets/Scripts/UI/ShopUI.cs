@@ -24,6 +24,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private Button endGameButton;
     [SerializeField] private TextMeshProUGUI endGameButtonText;
     [SerializeField] private int speedboatAmount = 10000;
+    [SerializeField] private RectTransform coinsBankedPrompt;
 
     // Slot Selection Pane Stuff
     [Header("Slot Selection Pane")]
@@ -52,7 +53,7 @@ public class ShopUI : MonoBehaviour
     bool slotSelected = false;
     AbilitySlot currentSlot;
 
-    public void Init(Dictionary<AbilitySlot, Ability> equippedAbilities, List<Ability> availableAbilities, List<Ability> ownedAbilities, int coins, 
+    public void Init(bool hadCoins,Dictionary<AbilitySlot, Ability> equippedAbilities, List<Ability> availableAbilities, List<Ability> ownedAbilities, int coins, 
         Action<Ability> purchaseCallback, Action<AbilitySlot, Ability> setCallback, Action closeCallback)
     {
         this.coins = coins;
@@ -72,7 +73,16 @@ public class ShopUI : MonoBehaviour
             currentSlot = AbilitySlot.LeftClick;
             RefreshUI();
         });
-
+        
+        coinsBankedPrompt.anchoredPosition = new Vector2(-1000,0);
+        if (hadCoins)
+        {
+            coinsBankedPrompt.DOAnchorPosX(0, 0.5f).onComplete = () =>
+            {
+                coinsBankedPrompt.DOAnchorPosX(1000, 0.5f).SetDelay(1.5f);
+            };
+        }
+        
         rightSlotButton.onClick.AddListener(() => {
             slotSelected = true;
             currentSlot = AbilitySlot.RightClick;
