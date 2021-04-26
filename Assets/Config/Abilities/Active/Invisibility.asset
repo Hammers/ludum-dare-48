@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Invisibility
   m_EditorClassIdentifier: 
   previous: {fileID: 0}
+  abilityNameBase: Stealth Cloak
   abilityName: Stealth Cloak
   abilityDesc: 'Become invisible for a short time. <br> Duration: 2s<br> Cooldown:
     15s'

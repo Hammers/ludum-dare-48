@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dart EMPLevel2
   m_EditorClassIdentifier: 
   previous: {fileID: 11400000, guid: 74927e919253c9d47addd509dd776438, type: 2}
+  abilityNameBase: Shock Dart
   abilityName: Shock Dart (Level 2)
   abilityDesc: 'Shoots a dart which will temporarily knock out an enemy.<br>Shots:
     2'

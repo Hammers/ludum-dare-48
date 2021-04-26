@@ -10,7 +10,7 @@ public enum AbilitySlot{
 
 public class AbilityManager : MonoBehaviour
 {
-    private struct ActiveAbilityState
+    public struct ActiveAbilityState
     {
         public float currentCooldown;
         public int usesLeft;
@@ -19,8 +19,8 @@ public class AbilityManager : MonoBehaviour
     public static AbilityManager instance;
     private Dictionary<AbilitySlot, Ability> activeAbilities = new Dictionary<AbilitySlot, Ability>();
 
-    private ActiveAbilityState leftAbilityState;
-    private ActiveAbilityState rightAbilityState;
+    public ActiveAbilityState leftAbilityState;
+    public ActiveAbilityState rightAbilityState;
 
     private Transform player;
     private bool isEnabled = true;
@@ -122,6 +122,11 @@ public class AbilityManager : MonoBehaviour
         return activeAbilities;
     }
 
+    public Ability GetEquippedAbility(AbilitySlot slot)
+    {
+        return activeAbilities.TryGetValue(slot,out var ability) ? ability : null;
+    }
+    
     public void ResetUses(){
         if(activeAbilities.ContainsKey(AbilitySlot.LeftClick)){
             leftAbilityState.usesLeft = (activeAbilities[AbilitySlot.LeftClick] as ActiveAbility).startingUses;

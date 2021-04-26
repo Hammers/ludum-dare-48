@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Ability : ScriptableObject, IEquatable<Ability>
 {
     public Ability previous;
+    public string abilityNameBase;
     public string abilityName;
     public string abilityDesc;
     public int cost;

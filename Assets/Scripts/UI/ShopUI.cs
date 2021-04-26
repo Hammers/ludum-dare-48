@@ -82,21 +82,21 @@ public class ShopUI : MonoBehaviour
     private void RefreshSlotPane()
     {
         if(equippedAbilities.ContainsKey(AbilitySlot.LeftClick)){
-            leftSlotLabel.text = equippedAbilities[AbilitySlot.LeftClick].name;
+            leftSlotLabel.text = equippedAbilities[AbilitySlot.LeftClick].abilityNameBase;
         }
         else{
             leftSlotLabel.text = "+";
         }
 
         if(equippedAbilities.ContainsKey(AbilitySlot.RightClick)){
-            rightSlotLabel.text = equippedAbilities[AbilitySlot.RightClick].name;
+            rightSlotLabel.text = equippedAbilities[AbilitySlot.RightClick].abilityNameBase;
         }
         else{
             rightSlotLabel.text = "+";
         }
 
         if(equippedAbilities.ContainsKey(AbilitySlot.Passive)){
-            passiveSlotLabel.text = equippedAbilities[AbilitySlot.Passive].name;
+            passiveSlotLabel.text = equippedAbilities[AbilitySlot.Passive].abilityNameBase;
         }
         else{
             passiveSlotLabel.text = "+";

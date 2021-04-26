@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dart EMP
   m_EditorClassIdentifier: 
   previous: {fileID: 0}
+  abilityNameBase: Shock Dart
   abilityName: Shock Dart
   abilityDesc: Shoots a dart which will temporarily knock out an enemy<br>Shots:1
   cost: 10
