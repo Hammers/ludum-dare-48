@@ -4,8 +4,11 @@ public class PlayerBank : MonoBehaviour
 {
     public static PlayerBank instance;
 
+    public int endGameThreshold = 2000;
+    
     public int coins;
 
+    public bool passedEndGameThreshold = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,10 @@ public class PlayerBank : MonoBehaviour
     {
         var inventory = FindObjectOfType<CharacterInventory>();
         coins += inventory.GetCoins();
+        if (coins > endGameThreshold)
+        {
+            passedEndGameThreshold = true;
+        }
         inventory.ClearCoins();
     }
 }

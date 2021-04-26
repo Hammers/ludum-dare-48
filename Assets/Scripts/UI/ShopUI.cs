@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Linq;
+using DG.Tweening;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ShopUI : MonoBehaviour
 {
     [SerializeField] private Button closeButton;
 
     // Slot Pane Stuff
+    [Header("Slot Pane")]
     [SerializeField] private GameObject slotPane;
     [SerializeField] private Button leftSlotButton;
     [SerializeField] private Button rightSlotButton;
@@ -18,10 +21,12 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text leftSlotLabel;
     [SerializeField] private TMP_Text rightSlotLabel;
     [SerializeField] private TMP_Text passiveSlotLabel;
-
-
+    [SerializeField] private Button endGameButton;
+    [SerializeField] private TextMeshProUGUI endGameButtonText;
+    [SerializeField] private int speedboatAmount = 10000;
 
     // Slot Selection Pane Stuff
+    [Header("Slot Selection Pane")]
     [SerializeField] private GameObject selectAbilityPane;
     [SerializeField] private Button buyButton;
     [SerializeField] private Button doneButton;
@@ -58,7 +63,8 @@ public class ShopUI : MonoBehaviour
         closeButton.onClick.AddListener(() => closeCallback());
         buyButton.onClick.AddListener(() => TryPurchaseItem());
         doneButton.onClick.AddListener(() => TrySelectItem());
-        
+        endGameButton.gameObject.SetActive(PlayerBank.instance.passedEndGameThreshold);
+        endGameButtonText.text = $"Buy a speedboat - {speedboatAmount}";
         leftSlotButton.onClick.AddListener(() => {
             slotSelected = true;
             currentSlot = AbilitySlot.LeftClick;
@@ -211,6 +217,19 @@ public class ShopUI : MonoBehaviour
         RefreshUI();
         if(!equippedAbilities.ContainsKey(currentSlot) || equippedAbilities[currentSlot] != selectedAbility){
             setCallback(currentSlot, selectedAbility);
+        }
+    }
+
+    public void OnEndGamePressed()
+    {
+        if (PlayerBank.instance.coins > speedboatAmount)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
+        else
+        {
+            coinsLabel.color = Color.red;
+            coinsLabel.DOColor(Color.white, 0.5f);
         }
     }
 }
