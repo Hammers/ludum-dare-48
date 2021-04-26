@@ -109,7 +109,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2668903829885046145}
-  - component: {fileID: 7514270903718603005}
   - component: {fileID: 4439923557688836506}
   - component: {fileID: 2668903829885046146}
   - component: {fileID: 550741413596306292}
@@ -137,25 +136,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7514270903718603005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2668903829885046175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa16c9b28ac343408d76f49c9fea00a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 2668903831338964931}
-  _activeSprite: {fileID: 4454375367103297502, guid: b9e67e6489dc9054bb43f00f65a4b66b, type: 3}
-  _inActiveSprite: {fileID: -2016170256673693227, guid: b9e67e6489dc9054bb43f00f65a4b66b, type: 3}
-  interactionTime: 3
-  interactionPoint: {fileID: 2668903831248966187}
-  _interactionBar: {fileID: 5496718075656200524}
-  audioClip: {fileID: 8300000, guid: 76a56a6c07e4dcb48a5445d520888b3e, type: 3}
 --- !u!114 &4439923557688836506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +153,7 @@ MonoBehaviour:
   _inActiveSprite: {fileID: -2016170256673693227, guid: b9e67e6489dc9054bb43f00f65a4b66b, type: 3}
   interactionTime: 3
   interactionPoint: {fileID: 2668903831248966187}
+  audioSource: {fileID: 550741413596306292}
   _interactionBar: {fileID: 5496718075656200524}
   audioClip: {fileID: 8300000, guid: 76a56a6c07e4dcb48a5445d520888b3e, type: 3}
 --- !u!61 &2668903829885046146

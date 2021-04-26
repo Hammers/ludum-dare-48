@@ -16,19 +16,20 @@ public class Terminal : MonoBehaviour
     [SerializeField] private InteractionBar _interactionBar;
 
     public AudioClip audioClip;
-    private AudioSource audioSource;
     private Color originalColour;
+    private AudioSource audioSource;
 
     private Character _characterInRange;
 
     public Character CharacterInRange => _characterInRange;
     protected bool _used;
     private bool _using;
-    public void Start()
+    
+    public virtual void Start()
     {
         originalColour = _spriteRenderer.color;
         _interactionBar.gameObject.SetActive(false);
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     public void Reset()

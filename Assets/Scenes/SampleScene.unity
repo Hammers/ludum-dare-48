@@ -757,6 +757,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1578228026346692289, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3510397e0ffd9465695ac3ef03865daa, type: 3}
+    - target: {fileID: 1578228026346692289, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.47450984
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578228026346692289, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_Color.g
+      value: 0.78823537
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578228026346692289, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248209947063308538, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248209947063308538, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3743360693500255330, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -888,6 +912,18 @@ PrefabInstance:
     - target: {fileID: 4560677029702058797, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979763143224632262, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979763143224632262, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6592041046787195945, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}
+      propertyPath: padding
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7207185770772505860, guid: c3c02cddf6fd9408cb78b3ff047429e4, type: 3}

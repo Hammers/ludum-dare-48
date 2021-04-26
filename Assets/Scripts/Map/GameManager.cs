@@ -26,6 +26,7 @@
 
         public void ResetSession()
         {
+            FindObjectOfType<ShopPointer>()?.Hide();
             foreach (var terminal in _terminalsActivatedThisSession)
             {
                 terminal.Reset();
@@ -41,12 +42,13 @@
         
         public void AddUsedTerminal(Terminal terminal)
         {
+            FindObjectOfType<ShopPointer>()?.Show();
             _terminalsActivatedThisSession.Add(terminal);
         }
 
         public void EndSession()
         {
+            FindObjectOfType<ShopPointer>()?.Hide();
             _terminalsActivatedThisSession.Clear();
-            NewSessionStarted?.Invoke();
         }
     }
