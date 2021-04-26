@@ -28,6 +28,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Room _startRoom;
     [SerializeField] private List<Room> _roomPrefabs;
     [SerializeField] private List<Room> _safetyRoomPrefabs;
+    [SerializeField] private int _coinSpread = 3;
     private Dictionary<Vector2Int, Room> _rooms = new Dictionary<Vector2Int, Room>();
     private int _roomsWithoutTreasure = 0;
     
@@ -268,7 +269,7 @@ public class MapGenerator : MonoBehaviour
         {
             int newcoins = Mathf.RoundToInt(terminal.Coins * ((Mathf.Abs(newPos.x) + Mathf.Abs(newPos.y)) * _distanceTreasureMultiplier));
             Debug.Log($"Setting terminal coins to {newcoins}");
-            terminal.Coins = newcoins;
+            terminal.Coins = newcoins + Random.Range(-_coinSpread,_coinSpread);
         }
 
         if (terminals.Count == 0)

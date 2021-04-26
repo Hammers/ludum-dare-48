@@ -26,7 +26,7 @@ public class CoinTerminal : Terminal
         _used = true;
         _spriteRenderer.sprite = _inActiveSprite;
         GameManager.Instance.AddUsedTerminal(this);
-        CharacterInRange.GetComponent<CharacterInventory>().AddCoins(Random.Range(_coins - 3, _coins + 3));
+        CharacterInRange.GetComponent<CharacterInventory>().AddCoins(Random.Range(_coins, _coins));
         EndActivation();
     }
 }
