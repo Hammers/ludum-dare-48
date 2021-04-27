@@ -112,7 +112,7 @@ public class VisionCone : MonoBehaviour
                     mRenderer.material = searchingMat;
                     Color col = Color.Lerp(searchingMat.color, normalMat.color,
                         vision.currentSearchingTime / vision._searchTime);
-                    Debug.Log($"Setting col: {col}");
+                    //Debug.Log($"Setting col: {col}");
                     mRenderer.material.color = col;
                     break;
                 case Vision.VisionState.Alert:

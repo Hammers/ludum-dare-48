@@ -102,9 +102,14 @@ public class ShopPointer : MonoBehaviour
             }
         }
 
+        
+        #if UNITY_WEBGL
+            indicatorPos /= 2;
+        #endif
+        
         rectTransform.anchoredPosition = indicatorPos;
         rectTransform.localRotation = Quaternion.Euler(0, 0, rotation);
-
+        //Debug.Log($"Shop Point Pos: {indicatorPos} and rot {rotation}. _show: {_show}");
         if (reachedTarget)
         {
             //Debug.Log("STarting Tween");        
